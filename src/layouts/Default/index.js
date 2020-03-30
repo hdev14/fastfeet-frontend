@@ -10,7 +10,7 @@ export default function DefaultLayout({ children }) {
 }
 
 DefaultLayout.propTypes = {
-  children: PropTypes.oneOfTypes([
+  children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,

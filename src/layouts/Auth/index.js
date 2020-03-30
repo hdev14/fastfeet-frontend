@@ -11,7 +11,7 @@ export default function AuthLayout({ children }) {
 }
 
 AuthLayout.propTypes = {
-  children: PropTypes.oneOfTypes([
+  children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
