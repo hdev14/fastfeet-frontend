@@ -9,7 +9,7 @@ export default createGlobalStyle`
     --light-gray: #DDDDDD;
     --gray: #999999;
     --dark-gray: #444444;
-
+    --red: #DE3B3B;
     font-size: 16px;
   }
 
