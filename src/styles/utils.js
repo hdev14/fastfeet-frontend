@@ -9,7 +9,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Table = styled.div`
+export const Table = styled.table`
   width: 100%;
   border-collapse: seperate;
   border-spacing: 0 20px;
@@ -21,12 +21,14 @@ export const Table = styled.div`
   }
 
   tr.head {
+
     th {
       padding: 0 12px;
       width: 180px;
       &#id {
         text-transform: uppercase;
         width: 50px !important;
+        padding-left: 20px;
       }
 
       &:not(#id) {
@@ -35,7 +37,7 @@ export const Table = styled.div`
       }
 
       &#recipient, &#action {
-        width: 210px;
+        width: 220px;
       }
 
       &#action {
@@ -54,11 +56,12 @@ export const Table = styled.div`
       height: 50px;
 
       &:first-child {
-        padding-left: 10px;
+        padding-left: 20px;
       }
 
       &:last-child {
-        padding-right: 10px;
+        padding-right: 20px;
+        text-align: right;
       }
     }
   }
@@ -79,4 +82,57 @@ export const PrimaryButton = styled.button`
   svg {
     margin-right: 5px;
   }
+`;
+
+export const Actions = styled.div`
+  position: relative;
+
+  svg {
+    cursor: pointer;
+  }
+
+  ul {
+    display: none;
+    z-index: 10;
+    position: absolute;
+    top: 30px;
+    left: calc(100% - 85px);
+    list-style: none;
+    border: 1px solid var(--light-gray);
+    width: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+
+    &::before {
+      position: absolute;
+      top: -7.6px;
+      left: calc(50% - 10px);
+      content: '';
+      width: 15px;
+      height: 15px;
+      border-top: 1px solid var(--light-gray);
+      border-left: 1px solid var(--light-gray);
+      background-color: white;
+      transform: rotate(45deg);
+    }
+
+    li {
+
+      display: flex;
+      align-items: center;
+      padding: 6px 0;
+      font-weight: 400;
+      color: var(--gray);
+      cursor: pointer;
+
+      & + li {
+        border-top: 1px solid var(--light-gray);
+      }
+      svg {
+        margin-right: 7px;
+      }
+    }
+  }
+
 `;
