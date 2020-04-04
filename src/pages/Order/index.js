@@ -6,9 +6,14 @@ import { IoMdTrash } from 'react-icons/io';
 
 
 import {
-  Container, Table, PrimaryButton, Actions,
+  Container,
+  Operations,
+  Table,
+  PrimaryButton,
+  Actions,
+  Picture,
 } from '../../styles/utils';
-import { Operations, Status, DeliverymanInfo } from './styles';
+import { Status, DeliverymanInfo } from './styles';
 
 export default function Order() {
   function handleActionOnClick(e) {
@@ -53,7 +58,7 @@ export default function Order() {
             <td>Ludwig van Beethoven</td>
             <td>
               <DeliverymanInfo>
-                <img src="https://api.adorable.io/avatars/50/abott@adorable.png" alt="" />
+                <Picture src="https://api.adorable.io/avatars/50/abott@adorable.png" alt="" />
                 <span>Jonh Doe</span>
               </DeliverymanInfo>
             </td>
@@ -85,45 +90,6 @@ export default function Order() {
               </Actions>
             </td>
           </tr>
-
-          <tr>
-            <td>#01</td>
-            <td>Ludwig van Beethoven</td>
-            <td>
-              <DeliverymanInfo>
-                <img src="https://api.adorable.io/avatars/50/abott@adorable.png" alt="" />
-                <span>Jonh Doe</span>
-              </DeliverymanInfo>
-            </td>
-            <td>Rio do Sul</td>
-            <td>Santa Catarina</td>
-            <td>
-              <Status className="green">
-                <FaCircle />
-                entregue
-              </Status>
-            </td>
-            <td>
-              <Actions>
-                <MdMoreHoriz size={24} color="#666" onClick={handleActionOnClick} />
-                <ul>
-                  <li>
-                    <MdRemoveRedEye size={16} color="#8E5BE8" />
-                    Visualizar
-                  </li>
-                  <li>
-                    <MdCreate size={16} color="#4D85EE" />
-                    Editar
-                  </li>
-                  <li>
-                    <IoMdTrash size={16} color="#DE3B3B" />
-                    Excluir
-                  </li>
-                </ul>
-              </Actions>
-            </td>
-          </tr>
-
         </tbody>
 
 

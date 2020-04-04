@@ -1,34 +1,5 @@
 import styled from 'styled-components';
 
-export const Operations = styled.div`
-  margin: 40px 0 20px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  & > div {
-    width: 250px;
-    height: 40px;
-    position: relative;
-
-    input {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      padding: 0 10px 0 45px;
-      border: 1px solid var(--light-gray);
-      border-radius: 4px;
-    }
-
-    svg {
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      fill: var(--gray);
-      transform: translateY(-50%);
-    }
-  }
-`;
 
 export const Status = styled.div`
   display: flex;
@@ -86,10 +57,4 @@ export const Status = styled.div`
 export const DeliverymanInfo = styled.div`
   display: flex;
   align-items: center;
-  img {
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
 `;
