@@ -1,5 +1,68 @@
 import React from 'react';
+import { GoSearch, GoPlus } from 'react-icons/go';
+import { MdCreate, MdMoreHoriz } from 'react-icons/md';
+import { IoMdTrash } from 'react-icons/io';
+
+
+import {
+  Container,
+  Operations,
+  Table,
+  PrimaryButton,
+  Actions,
+} from '../../styles/utils';
+
+import handleAction from '../../functions/handleAction';
 
 export default function Recipient() {
-  return <h1>Recipient</h1>;
+  return (
+    <Container>
+      <h2>Genrenciar distinatários</h2>
+
+      <Operations>
+        <div>
+          <input type="text" placeholder="Buscar por distinatários" />
+          <GoSearch size={20} />
+        </div>
+
+        <PrimaryButton type="button">
+          <GoPlus size={20} color="#fff" />
+          casdastrar
+        </PrimaryButton>
+      </Operations>
+
+      <Table>
+        <thead>
+          <tr className="head">
+            <th id="id">ID</th>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th id="action">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#01</td>
+            <td>Ludwig van Beethoven</td>
+            <td>Rua Beethoven, 1729, Diadema - São Paulo</td>
+            <td>
+              <Actions>
+                <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
+                <ul style={{ display: 'none' }}>
+                  <li>
+                    <MdCreate size={16} color="#4D85EE" />
+                    Editar
+                  </li>
+                  <li>
+                    <IoMdTrash size={16} color="#DE3B3B" />
+                    Excluir
+                  </li>
+                </ul>
+              </Actions>
+            </td>
+          </tr>
+        </tbody>
+      </Table>
+    </Container>
+  );
 }

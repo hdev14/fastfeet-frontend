@@ -15,14 +15,9 @@ import {
 } from '../../styles/utils';
 import { Status, DeliverymanInfo } from './styles';
 
-export default function Order() {
-  function handleActionOnClick(e) {
-    const menu = e.target.nextSibling;
-    if (menu && menu.style) {
-      menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-    }
-  }
+import handleAction from '../../functions/handleAction';
 
+export default function Order() {
   return (
     <Container>
       <h2>Gerenciando encomendas</h2>
@@ -72,7 +67,7 @@ export default function Order() {
             </td>
             <td>
               <Actions>
-                <MdMoreHoriz size={24} color="#666" onClick={handleActionOnClick} />
+                <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
                 <ul style={{ display: 'none' }}>
                   <li>
                     <MdRemoveRedEye size={16} color="#8E5BE8" />

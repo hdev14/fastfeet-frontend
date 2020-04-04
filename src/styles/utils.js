@@ -6,6 +6,8 @@ export const Container = styled.div`
 
   h2 {
     font-size: 1.5rem;
+    color: var(--dark-gray);
+    margin: 30px 0;
   }
 `;
 
@@ -25,6 +27,8 @@ export const Table = styled.table`
     th {
       padding: 0 12px;
       width: 180px;
+      color: var(--dark-gray);
+
       &#id {
         text-transform: uppercase;
         width: 50px !important;

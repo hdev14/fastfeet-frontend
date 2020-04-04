@@ -13,14 +13,9 @@ import {
   Picture,
 } from '../../styles/utils';
 
-export default function Deliveryman() {
-  function handleActionOnClick(e) {
-    const menu = e.target.nextSibling;
-    if (menu && menu.style) {
-      menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-    }
-  }
+import handleAction from '../../functions/handleAction';
 
+export default function Deliveryman() {
   return (
     <Container>
       <h2>Genrenciar entregadores</h2>
@@ -61,7 +56,7 @@ export default function Deliveryman() {
             </td>
             <td>
               <Actions>
-                <MdMoreHoriz size={24} color="#666" onClick={handleActionOnClick} />
+                <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
                 <ul style={{ display: 'none' }}>
                   <li>
                     <MdCreate size={16} color="#4D85EE" />
