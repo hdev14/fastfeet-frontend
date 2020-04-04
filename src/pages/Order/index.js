@@ -37,7 +37,7 @@ export default function Order() {
 
         <thead>
           <tr className="head">
-            <th id="id">id</th>
+            <th id="id">ID</th>
             <th id="recipient">destinatário</th>
             <th>Entregador</th>
             <th>Cidade</th>

@@ -30,7 +30,6 @@ export const Table = styled.table`
       color: var(--dark-gray);
 
       &#id {
-        text-transform: uppercase;
         width: 50px !important;
         padding-left: 20px;
       }
@@ -68,6 +67,13 @@ export const Table = styled.table`
         padding-right: 20px;
         text-align: right;
       }
+
+      p {
+        width: 600px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 
@@ -94,6 +100,11 @@ export const Actions = styled.div`
 
   svg {
     cursor: pointer;
+  }
+
+  &.throuble ul {
+    width: 200px;
+    left: calc(100% - 110px);
   }
 
   ul {

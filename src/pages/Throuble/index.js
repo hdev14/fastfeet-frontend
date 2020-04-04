@@ -19,19 +19,21 @@ export default function Throuble() {
       <Table>
         <thead>
           <tr className="head">
-            <th id="id">ID</th>
-            <th>Nome</th>
-            <th>Endereço</th>
+            <th id="id">Emcomenda</th>
+            <th>Problema</th>
             <th id="action">Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>#01</td>
-            <td>Ludwig van Beethoven</td>
-            <td>Rua Beethoven, 1729, Diadema - São Paulo</td>
             <td>
-              <Actions>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in mauris et felis eleifend elementum vel quis lectus. Vivamus dapibus nisi augue, vitae ultrices ligula elementum at. Proin ut metus in mi tincidunt vestibulum a a felis. Aenean dictum libero eu urna tristique vestibulum. Fusce feugiat justo et augue facilisis, sit amet ornare eros consequat. Suspendisse semper risus feugiat nisl commodo, sed mollis neque auctor. Nullam eu fringilla lectus. Phasellus sed sapien sed turpis imperdiet maximus. Aenean ante nulla, bibendum non facilisis at, facilisis eget ex. In ut quam et tellus aliquet tincidunt.
+              </p>
+            </td>
+            <td>
+              <Actions className="throuble">
                 <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
                 <ul style={{ display: 'none' }}>
                   <li>
@@ -40,7 +42,7 @@ export default function Throuble() {
                   </li>
                   <li>
                     <IoMdTrash size={16} color="#DE3B3B" />
-                    Excluir
+                    Cancelar encomenda
                   </li>
                 </ul>
               </Actions>
