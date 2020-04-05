@@ -5,6 +5,8 @@ import { MdMoreHoriz, MdRemoveRedEye, MdCreate } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
 
 
+import OrderModal from '../../components/OrderModal';
+
 import {
   Container,
   Operations,
@@ -18,6 +20,14 @@ import { Status, DeliverymanInfo } from './styles';
 import handleAction from '../../functions/handleAction';
 
 export default function Order() {
+  function handleModal(e) {
+    // const modal = e.target.nexSibling;
+    // console.log(modal);
+    // if (modal) {
+    //   modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
+    // }
+  }
+
   return (
     <Container>
       <h2>Gerenciando encomendas</h2>
@@ -66,12 +76,20 @@ export default function Order() {
               </Status>
             </td>
             <td>
+              {/* <OrderModal idModal="modal-id" /> */}
               <Actions>
                 <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
                 <ul style={{ display: 'none' }}>
                   <li>
-                    <MdRemoveRedEye size={16} color="#8E5BE8" />
-                    Visualizar
+                    <div
+                      onClick={handleModal}
+                      onKeyPress={handleModal}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <MdRemoveRedEye size={16} color="#8E5BE8" />
+                      Visualizar
+                    </div>
                   </li>
                   <li>
                     <MdCreate size={16} color="#4D85EE" />
@@ -86,9 +104,9 @@ export default function Order() {
             </td>
           </tr>
         </tbody>
-
-
       </Table>
+
+
     </Container>
   );
 }
