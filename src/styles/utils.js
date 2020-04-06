@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { Form } from '@rocketseat/unform';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   width: 80%;
@@ -90,8 +92,50 @@ export const PrimaryButton = styled.button`
   font-weight: bold;
   color: white;
   font-size: 14px;
+
+  &:hover {
+    background-color: ${darken(0.05, '#7D40E7')};
+  }
+
   svg {
     margin-right: 5px;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+
+    display: flex;
+    align-items: center;
+  }
+`;
+
+export const DefaultButton = styled.button`
+  border: none;
+  background-color: #ccc;
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+  font-size: 14px;
+
+  &:hover {
+    background-color: ${darken(0.05, '#ccc')};
+  }
+
+  svg {
+    margin-right: 5px;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+
+    display: flex;
+    align-items: center;
   }
 `;
 
@@ -188,4 +232,31 @@ export const Picture = styled.img`
   width: 35px;
   border-radius: 50%;
   margin-right: 10px;
+`;
+
+export const UnForm = styled(Form)`
+  width: 100%;
+  border-radius: 4px;
+  background-color: white;
+  padding: 30px;
+
+  label {
+    font-size: 14px;
+    color: var(--dark-gray);
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input {
+    font-size: 16px;
+    color: var(--medium-gray);
+    padding: 0 25px;
+    margin-bottom: 20px;
+    height: 45px;
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    width: 100%;
+  }
+
 `;

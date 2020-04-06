@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { GoSearch, GoPlus } from 'react-icons/go';
 import { MdCreate, MdMoreHoriz } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
@@ -26,9 +27,11 @@ export default function Deliveryman() {
           <GoSearch size={20} />
         </div>
 
-        <PrimaryButton type="button">
-          <GoPlus size={20} color="#fff" />
-          casdastrar
+        <PrimaryButton>
+          <Link to="/deliveryman/register">
+            <GoPlus size={20} color="#fff" />
+            casdastrar
+          </Link>
         </PrimaryButton>
       </Operations>
 
