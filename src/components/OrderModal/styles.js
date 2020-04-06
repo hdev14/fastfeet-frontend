@@ -8,7 +8,7 @@ export const ContainerModal = styled.div`
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.4);
-  z-index: 10;
+  z-index: 11;
 `;
 
 export const Modal = styled.div`

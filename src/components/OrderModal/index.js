@@ -13,10 +13,8 @@ import signature from '../../assets/signature.png';
 export default function OrderModal() {
   function handleClose(e) {
     const modal = e.target.children[0];
-
     if (modal) {
       e.target.style.display = 'none';
-      modal.style.display = 'none';
     }
   }
 

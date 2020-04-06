@@ -20,12 +20,11 @@ import { Status, DeliverymanInfo } from './styles';
 import handleAction from '../../functions/handleAction';
 
 export default function Order() {
-  function handleModal(e) {
-    // const modal = e.target.nexSibling;
-    // console.log(modal);
-    // if (modal) {
-    //   modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
-    // }
+  function handleModal(modalId) {
+    const modal = document.getElementById(modalId).firstChild;
+    if (modal) {
+      modal.style.display = 'block';
+    }
   }
 
   return (
@@ -76,15 +75,17 @@ export default function Order() {
               </Status>
             </td>
             <td>
-              {/* <OrderModal idModal="modal-id" /> */}
+              <div id="modal">
+                <OrderModal />
+              </div>
               <Actions>
                 <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
                 <ul style={{ display: 'none' }}>
                   <li>
                     <div
-                      onClick={handleModal}
-                      onKeyPress={handleModal}
                       role="button"
+                      onClick={() => handleModal('modal')}
+                      onKeyPress={() => handleModal('modal')}
                       tabIndex={0}
                     >
                       <MdRemoveRedEye size={16} color="#8E5BE8" />
