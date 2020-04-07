@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { GoSearch, GoPlus } from 'react-icons/go';
 import { MdCreate, MdMoreHoriz } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
@@ -26,8 +27,10 @@ export default function Recipient() {
         </div>
 
         <PrimaryButton type="button">
-          <GoPlus size={20} color="#fff" />
-          casdastrar
+          <Link to="/recipient/register">
+            <GoPlus size={20} color="#fff" />
+            casdastrar
+          </Link>
         </PrimaryButton>
       </Operations>
 

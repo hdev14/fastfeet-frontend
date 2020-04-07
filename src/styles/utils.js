@@ -5,7 +5,6 @@ import { darken } from 'polished';
 export const Container = styled.div`
   width: 80%;
   margin: 20px auto;
-
   h2 {
     font-size: 1.5rem;
     color: var(--dark-gray);
@@ -227,6 +226,30 @@ export const Operations = styled.div`
   }
 `;
 
+
+export const ContainerRegister = styled(Container)`
+    max-width: 900px;
+
+    div:first-child {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h2 {
+        color: var(--dark-gray);
+        font-size: 1.5rem;
+      }
+
+      div {
+        display: flex;
+        height: 36px;
+        button:first-child {
+          margin-right: 15px;
+        }
+      }
+    }
+`;
+
 export const Picture = styled.img`
   height: 35px;
   width: 35px;
@@ -243,20 +266,48 @@ export const UnForm = styled(Form)`
   label {
     font-size: 14px;
     color: var(--dark-gray);
-    display: block;
-    margin-bottom: 5px;
     font-weight: bold;
   }
 
   input {
     font-size: 16px;
     color: var(--medium-gray);
-    padding: 0 25px;
+    padding: 0 5px 0 25px;
     margin-bottom: 20px;
+    margin-top: 10px;
     height: 45px;
     border: 1px solid var(--light-gray);
     border-radius: 4px;
     width: 100%;
+
+  }
+
+
+  div.recipient-form {
+    padding: 30px 0 60px;
+    display: grid;
+    grid-template-areas: 'name name name name name name name name name'
+                        'street street street street street number number complement complement'
+                        'city city city state state state cep cep cep';
+    grid-row-gap: 50px;
+    grid-column-gap: 10px;
+    div {
+      label, input {
+        width: 100%;
+      }
+
+      input {
+        margin: 10px 0 0 0;
+      }
+
+      &#input-name { grid-area: name; }
+      &#input-street { grid-area: street; }
+      &#input-number { grid-area: number; }
+      &#input-complement { grid-area: complement; }
+      &#input-city { grid-area: city; }
+      &#input-state { grid-area: state; }
+      &#input-cep { grid-area: cep; }
+    }
   }
 
 `;

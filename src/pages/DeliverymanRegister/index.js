@@ -4,8 +4,9 @@ import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
 import AvatarInput from './AvatarInput';
 
-import { PrimaryButton, DefaultButton, UnForm } from '../../styles/utils';
-import ContainerRegister from './styles';
+import {
+  ContainerRegister, PrimaryButton, DefaultButton, UnForm,
+} from '../../styles/utils';
 
 export default function DeliverymanRegister() {
   return (
@@ -28,21 +29,27 @@ export default function DeliverymanRegister() {
       <UnForm>
         <AvatarInput name="avatar" />
 
-        <label htmlFor="name">Nome</label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          placeholder="Digite o nome do entregador"
-        />
+        <label htmlFor="name">
+          Nome
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Digite o nome do entregador"
+          />
+        </label>
 
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="Digite o email do entregador"
-        />
+
+        <label htmlFor="email">
+          Email
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Digite o email do entregador"
+          />
+        </label>
+
       </UnForm>
     </ContainerRegister>
   );
