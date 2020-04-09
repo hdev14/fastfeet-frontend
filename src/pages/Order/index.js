@@ -3,7 +3,7 @@ import { GoPlus, GoSearch } from 'react-icons/go';
 import { FaCircle } from 'react-icons/fa';
 import { MdMoreHoriz, MdRemoveRedEye, MdCreate } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
-
+import { Link } from 'react-router-dom';
 
 import OrderModal from '../../components/OrderModal';
 
@@ -38,8 +38,10 @@ export default function Order() {
         </div>
 
         <PrimaryButton type="button">
-          <GoPlus size={20} color="#fff" />
-          casdastrar
+          <Link to="/order/register">
+            <GoPlus size={20} color="#fff" />
+            casdastrar
+          </Link>
         </PrimaryButton>
       </Operations>
       <Table>

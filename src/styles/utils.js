@@ -258,7 +258,6 @@ export const Picture = styled.img`
 `;
 
 export const UnForm = styled(Form)`
-  width: 100%;
   border-radius: 4px;
   background-color: white;
   padding: 30px;

@@ -11,11 +11,13 @@ import Recipient from '../pages/Recipient';
 import Throuble from '../pages/Throuble';
 import DeliverymanRegister from '../pages/DeliverymanRegister';
 import RecipientRegister from '../pages/RecipeientRegister';
+import OrderRegister from '../pages/OrderRegister';
 
 export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={SignIn} />
+      <Route path="/order/register" exact auth component={OrderRegister} />
       <Route path="/order" auth component={Order} />
       <Route path="/deliveryman/register" exact auth component={DeliverymanRegister} />
       <Route path="/deliveryman" auth component={Deliveryman} />
