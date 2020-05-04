@@ -17,6 +17,13 @@ import {
 import handleAction from '../../functions/handleAction';
 
 export default function Deliveryman() {
+  function handleDelete() {
+    const result = window.confirm('Tem certeza que deseja excluir esse entregador?');
+    if (result) {
+      return;
+    }
+  }
+
   return (
     <Container>
       <h2>Genrenciar entregadores</h2>
@@ -66,8 +73,15 @@ export default function Deliveryman() {
                     Editar
                   </li>
                   <li>
-                    <IoMdTrash size={16} color="#DE3B3B" />
-                    Excluir
+                    <div
+                      role="button"
+                      onClick={handleDelete}
+                      onKeyPress={handleDelete}
+                      tabIndex={0}
+                    >
+                      <IoMdTrash size={16} color="#DE3B3B" />
+                      Excluir
+                    </div>
                   </li>
                 </ul>
               </Actions>

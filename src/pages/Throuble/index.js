@@ -12,6 +12,13 @@ import {
 import handleAction from '../../functions/handleAction';
 
 export default function Throuble() {
+  function handleCancel() {
+    const result = window.confirm('Tem certeza que deseja cancelar a encomenda?');
+    if (result) {
+      return;
+    }
+  }
+
   return (
     <Container>
       <h2>Problemas na entrega</h2>
@@ -41,8 +48,15 @@ export default function Throuble() {
                     Editar
                   </li>
                   <li>
-                    <IoMdTrash size={16} color="#DE3B3B" />
-                    Cancelar encomenda
+                    <div
+                      role="button"
+                      onClick={handleCancel}
+                      onKeyPress={handleCancel}
+                      tabIndex={0}
+                    >
+                      <IoMdTrash size={16} color="#DE3B3B" />
+                      Cancelar encomenda
+                    </div>
                   </li>
                 </ul>
               </Actions>

@@ -27,6 +27,13 @@ export default function Order() {
     }
   }
 
+  function handleDelete() {
+    const result = window.confirm('Tem certeza que deseja excluir esse encomenda?');
+    if (result) {
+      return;
+    }
+  }
+
   return (
     <Container>
       <h2>Gerenciando encomendas</h2>
@@ -99,8 +106,15 @@ export default function Order() {
                     Editar
                   </li>
                   <li>
-                    <IoMdTrash size={16} color="#DE3B3B" />
-                    Excluir
+                    <div
+                      role="button"
+                      onClick={handleDelete}
+                      onKeyPress={handleDelete}
+                      tabIndex={0}
+                    >
+                      <IoMdTrash size={16} color="#DE3B3B" />
+                      Excluir
+                    </div>
                   </li>
                 </ul>
               </Actions>

@@ -10,7 +10,7 @@ import Order from '../pages/Order';
 import Recipient from '../pages/Recipient';
 import Throuble from '../pages/Throuble';
 import DeliverymanRegister from '../pages/DeliverymanRegister';
-import RecipientRegister from '../pages/RecipeientRegister';
+import RecipientRegister from '../pages/RecipientRegister';
 import OrderRegister from '../pages/OrderRegister';
 
 export default function Routes() {

@@ -16,6 +16,13 @@ import {
 import handleAction from '../../functions/handleAction';
 
 export default function Recipient() {
+  function handleDelete() {
+    const result = window.confirm('Tem certeza que deseja excluir este destinatário?');
+    if (result) {
+      return;
+    }
+  }
+
   return (
     <Container>
       <h2>Genrenciar distinatários</h2>
@@ -57,8 +64,15 @@ export default function Recipient() {
                     Editar
                   </li>
                   <li>
-                    <IoMdTrash size={16} color="#DE3B3B" />
-                    Excluir
+                    <div
+                      role="button"
+                      onClick={handleDelete}
+                      onKeyPress={handleDelete}
+                      tabIndex={0}
+                    >
+                      <IoMdTrash size={16} color="#DE3B3B" />
+                      Excluir
+                    </div>
                   </li>
                 </ul>
               </Actions>
