@@ -309,4 +309,27 @@ export const UnForm = styled(Form)`
     }
   }
 
+   div#order-form {
+    padding: 30px 0 60px;
+    display: grid;
+    grid-template-areas: 'recipient deliveryman'
+                            'product product';
+    div {
+      label, input {
+        width: 100%;
+      }
+
+      input {
+        margin: 10px 0 0 0;
+      }
+
+      &#input-recipient {
+        grid-area: recipient;
+        display: flex;
+        flex-direction: column;
+      }
+      &#input-deliveryman { grid-area: dilveryman; }
+      &#input-product { grid-area: product; }
+    }
+  }
 `;

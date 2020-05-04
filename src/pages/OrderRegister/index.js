@@ -37,20 +37,35 @@ export default function OrderRegister() {
       </div>
 
       <FormContainerOrder>
-        <Select options={options} />
-
         <UnForm>
-          <div id="input-product">
-            <label htmlFor="product">
-              Nome do produto
-              <input
-                id="product"
-                name="product"
-                type="text"
+          <div id="order-form">
+            <div id="input-recipient">
+              <Select
+                className="basic-single"
+                classNamePrefix="select"
+                options={options}
               />
-            </label>
-          </div>
+            </div>
 
+            <div id="input-deliveryman">
+              <Select
+                className="basic-single"
+                classNamePrefix="select"
+                options={options}
+              />
+            </div>
+
+            <div id="input-product">
+              <label htmlFor="product">
+                Nome do produto
+                <input
+                  id="product"
+                  name="product"
+                  type="text"
+                />
+              </label>
+            </div>
+          </div>
         </UnForm>
       </FormContainerOrder>
 
