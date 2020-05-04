@@ -147,7 +147,7 @@ export const Actions = styled.div`
 
   &.throuble ul {
     width: 200px;
-    left: calc(100% - 110px);
+    left: calc(100% - 47%);
   }
 
   ul {

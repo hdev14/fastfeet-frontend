@@ -35,7 +35,7 @@ export default function Throuble() {
             <td>
               <Actions className="throuble">
                 <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
-                <ul style={{ display: 'none' }}>
+                <ul style={{ display: 'none', width: '220px' }}>
                   <li>
                     <MdCreate size={16} color="#4D85EE" />
                     Editar
