@@ -9,6 +9,7 @@ export const ContainerModal = styled.div`
   height: 100vh;
   background: rgba(0, 0, 0, 0.4);
   z-index: 11;
+  display: none;
 `;
 
 export const Modal = styled.div`
