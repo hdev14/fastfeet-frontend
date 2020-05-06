@@ -32,20 +32,33 @@ export default function OrderRegister() {
       <FormContainerOrder>
         <UnForm>
           <div id="order-form">
-            <div id="input-recipient">
-              <select name="select-recipient">
-                <option value="1">recipient 1</option>
-                <option value="2">recipient 2</option>
-                <option value="3">recipient 3</option>
-              </select>
-            </div>
 
-            <div id="input-deliveryman">
-              <select name="select-deliveryman">
-                <option value="1">deliveryman 1</option>
-                <option value="2">deliveryman 2</option>
-                <option value=3>deliveryman 3</option>
-              </select>
+            <div id="recipient-deliveryman">
+              <label htmlFor="select-recipient">
+                Destinatário
+                <select
+                  id="select-recipient"
+                  name="recipient"
+                  placeholder="Escolha o destinatário"
+                >
+                  <option value="1">recipient 1</option>
+                  <option value="2">recipient 2</option>
+                  <option value="3">recipient 3</option>
+                </select>
+              </label>
+
+              <label htmlFor="select-deliveryman">
+                Entregador
+                <select
+                  id="select-deliveryman"
+                  name="select-deliveryman"
+                  placeholder="Escolha o entregador"
+                >
+                  <option value="1">deliveryman 1</option>
+                  <option value="2">deliveryman 2</option>
+                  <option value="3">deliveryman 3</option>
+                </select>
+              </label>
             </div>
 
             <div id="input-product">

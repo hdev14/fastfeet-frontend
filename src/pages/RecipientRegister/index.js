@@ -29,7 +29,7 @@ export default function RecipientRegister() {
       </div>
 
       <UnForm>
-        <div className="recipient-form">
+        <div id="recipient-form">
           <div id="input-name">
             <label htmlFor="name">
               Nome

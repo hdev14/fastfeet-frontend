@@ -268,21 +268,20 @@ export const UnForm = styled(Form)`
     font-weight: bold;
   }
 
-  input {
+  input, select {
     font-size: 16px;
     color: var(--medium-gray);
-    padding: 0 5px 0 25px;
+    padding: 0 5px 0 10px;
     margin-bottom: 20px;
     margin-top: 10px;
     height: 45px;
     border: 1px solid var(--light-gray);
     border-radius: 4px;
     width: 100%;
-
+    background-color: white;
   }
 
-
-  div.recipient-form {
+  div#recipient-form {
     padding: 30px 0 60px;
     display: grid;
     grid-template-areas: 'name name name name name name name name name'
@@ -311,25 +310,25 @@ export const UnForm = styled(Form)`
 
    div#order-form {
     padding: 30px 0 60px;
-    display: grid;
-    grid-template-areas: 'recipient deliveryman'
-                            'product product';
-    div {
-      label, input {
+    display: flex;
+    flex-direction: column;
+
+    div#recipient-deliveryman {
+      display: flex;
+      width: 100%;
+
+      label {
         width: 100%;
-      }
 
-      input {
-        margin: 10px 0 0 0;
+        &:first-child { margin-right: 30px; }
       }
+    }
 
-      &#input-recipient {
-        grid-area: recipient;
-        display: flex;
-        flex-direction: column;
-      }
-      &#input-deliveryman { grid-area: dilveryman; }
-      &#input-product { grid-area: product; }
+    div#input-product {
+      margin-top: 30px;
+      width: 100%;
+
+      label { width: 100%; }
     }
   }
 `;
