@@ -32,7 +32,6 @@ export default function OrderRegister() {
       <FormContainerOrder>
         <UnForm>
           <div id="order-form">
-
             <div id="recipient-deliveryman">
               <label htmlFor="select-recipient">
                 Destinatário
