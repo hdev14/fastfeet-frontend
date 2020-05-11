@@ -1,27 +1,27 @@
 import styled from 'styled-components';
 
 export const ContainerModal = styled.div`
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  height: 100vh;
+  left: 0;
   position: fixed;
   top: 0;
-  left: 0;
-  border: 1px solid;
   width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
   z-index: 11;
-  display: none;
 `;
 
 export const Modal = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 4px;
+  cursor: not-allowed;
+  left: 50%;
   padding: 30px;
-  width: 400px;
+  position: absolute;
   text-align: left !important;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
 
   div {
     padding: 10px 0;
@@ -31,8 +31,8 @@ export const Modal = styled.div`
     }
 
     strong {
-      font-size: 14px;
       color: var(--dark-gray);
+      font-size: 14px;
       line-height: 24px;
     }
 
@@ -40,26 +40,19 @@ export const Modal = styled.div`
       list-style: none;
 
       li {
+        color: var(--medium-gray);
         font-size: 16px;
         line-height: 24px;
-        color: var(--medium-gray);
       }
     }
   }
 `;
 
-export const ModalHeader = styled.div`
-`;
-
-export const ModalBody = styled.div`
-
-`;
-
 export const ModalFooter = styled.div`
   img {
-    margin: 20px 0;
     height: 50px;
-    width: 100%;
+    margin: 20px 0;
     object-fit: cover;
+    width: 100%;
   }
 `;

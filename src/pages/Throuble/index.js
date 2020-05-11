@@ -2,6 +2,7 @@ import React from 'react';
 import { MdCreate, MdMoreHoriz } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
 
+import ThroubleModal from '../../components/ThroubleModal';
 
 import {
   Container,
@@ -11,7 +12,22 @@ import {
 
 import handleAction from '../../functions/handleAction';
 
+const style = {
+  ul: {
+    display: 'none',
+    width: '220px',
+    left: '95px',
+  },
+};
+
 export default function Throuble() {
+  function handleModal(modalId) {
+    const modal = document.getElementById(modalId).firstChild;
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  }
+
   function handleCancel() {
     const result = window.confirm('Tem certeza que deseja cancelar a encomenda?');
     if (result) {
@@ -40,12 +56,22 @@ export default function Throuble() {
               </p>
             </td>
             <td>
+              <div id="modal">
+                <ThroubleModal />
+              </div>
               <Actions className="throuble">
                 <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
-                <ul style={{ display: 'none', width: '220px' }}>
+                <ul style={style.ul}>
                   <li>
-                    <MdCreate size={16} color="#4D85EE" />
-                    Editar
+                    <div
+                      role="button"
+                      onClick={() => handleModal('modal')}
+                      onKeyPress={() => handleModal('modal')}
+                      tabIndex={0}
+                    >
+                      <MdCreate size={16} color="#4D85EE" />
+                      Visualizar
+                    </div>
                   </li>
                   <li>
                     <div
