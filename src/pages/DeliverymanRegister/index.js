@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
-import AvatarInput from './AvatarInput';
+import AvatarInput from '../../components/AvatarInput';
 
 import {
   ContainerRegister, PrimaryButton, DefaultButton, UnForm,

@@ -60,8 +60,10 @@ export default function Recipient() {
                 <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
                 <ul style={{ display: 'none' }}>
                   <li>
-                    <MdCreate size={16} color="#4D85EE" />
-                    Editar
+                    <Link to="/deliveryman/edit/1" >
+                      <MdCreate size={16} color="#4D85EE" />
+                      Editar
+                    </Link>
                   </li>
                   <li>
                     <div

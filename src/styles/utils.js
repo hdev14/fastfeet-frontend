@@ -191,6 +191,11 @@ export const Actions = styled.div`
       svg {
         margin-right: 7px;
       }
+
+      a {
+        text-decoration: none;
+        color: var(--gray);
+      }
     }
   }
 

@@ -102,8 +102,10 @@ export default function Order() {
                     </div>
                   </li>
                   <li>
-                    <MdCreate size={16} color="#4D85EE" />
-                    Editar
+                    <Link to="/order/edit/1">
+                      <MdCreate size={16} color="#4D85EE" />
+                      Editar
+                    </Link>
                   </li>
                   <li>
                     <div
