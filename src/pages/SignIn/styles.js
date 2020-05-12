@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form } from '@rocketseat/unform';
 import { darken } from 'polished';
 
 export const SignInContainer = styled.div`
@@ -14,7 +15,7 @@ export const SignInContainer = styled.div`
   padding: 60px 30px;
 `;
 
-export const SignInForm = styled.form`
+export const SignInForm = styled(Form)`
   display: flex;
   flex-direction: column;
   margin-top: 25px;
