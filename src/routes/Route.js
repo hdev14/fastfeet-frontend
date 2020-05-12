@@ -6,7 +6,7 @@ import DefaultLayout from '../layouts/Default';
 import AuthLayout from '../layouts/Auth';
 
 export default function Route({ auth, component: Component, ...routeProps }) {
-  const signIn = false;
+  const signIn = true;
 
   if (!signIn && auth) {
     return <Redirect to="/" />;
