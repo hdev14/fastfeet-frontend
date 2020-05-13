@@ -18,7 +18,6 @@ function* signIn({ payload }) {
 
     yield put(signInSuccess(token));
     history.push('/order');
-
   } catch (error) {
     console.tron.log('ERROR -> ', error);
     return;
