@@ -1,7 +1,9 @@
 
+import { authTypes } from '../actionsTypes';
+
 export function signInRequest(email, password) {
   return {
-    type: 'SIGN_IN_REQUEST',
+    type: authTypes.SIGN_IN_REQUEST,
     payload: {
       email,
       password,
@@ -9,5 +11,13 @@ export function signInRequest(email, password) {
   };
 }
 
+export function signInSuccess(token) {
+  return {
+    type: authTypes.SIGN_IN_SUCCESS,
+    payload: {
+      token,
+    },
+  };
+}
 
 export function signOut() {}
