@@ -2,11 +2,13 @@ import React from 'react';
 import { Route as ReactRoute, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import store from '../store';
+
 import DefaultLayout from '../layouts/Default';
 import AuthLayout from '../layouts/Auth';
 
 export default function Route({ auth, component: Component, ...routeProps }) {
-  const signIn = false;
+  const { signIn } = store.getState().auth;
 
   if (!signIn && auth) {
     return <Redirect to="/" />;

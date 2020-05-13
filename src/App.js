@@ -5,10 +5,10 @@ import { Router } from 'react-router-dom';
 
 import './configs/ReactotronConfig';
 
-import store from './store';
-
 import history from './services/history';
 import Routes from './routes';
+
+import store from './store';
 
 import GlobalStyle from './styles/global';
 
