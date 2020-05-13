@@ -1,5 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
+
+import { signInRequest } from '../../store/modules/auth/actions';
 
 import {
   SignInContainer,
@@ -21,8 +24,10 @@ const schema = Yup.object().shape({
 });
 
 export default function SignIn() {
-  function handleSubmit(data) {
-    return;
+  const dispatch = useDispatch();
+
+  function handleSubmit({ email, password }) {
+    dispatch(signInRequest(email, password));
   }
 
   return (
