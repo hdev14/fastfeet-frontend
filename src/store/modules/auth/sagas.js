@@ -16,6 +16,8 @@ function* signIn({ payload }) {
 
     const { token } = response.data;
 
+    api.defaults.headers.Authorization = `Baerer ${token}`;
+
     yield put(signInSuccess(token));
     history.push('/order');
   } catch (error) {
@@ -24,6 +26,12 @@ function* signIn({ payload }) {
   }
 }
 
+function setToken({ payload }) {
+  const { token } = payload.auth;
+  api.defaults.headers.Authorization = `Baerer ${token}`;
+}
+
 export default all([
   takeLatest(authTypes.SIGN_IN_REQUEST, signIn),
+  takeLatest('persist/REHYDRATE', setToken),
 ]);
