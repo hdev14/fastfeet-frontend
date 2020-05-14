@@ -1,11 +1,19 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import logo from '../../assets/fastfeet-logo@2x.png';
+import { signOut } from '../../store/modules/auth/actions';
 
+import logo from '../../assets/fastfeet-logo@2x.png';
 import { HeaderContainer, Navbar, Signout } from './styles';
 
 export default function Header() {
+  const dispatch = useDispatch();
+
+  function handleSignOut() {
+    dispatch(signOut());
+  }
+
   return (
     <HeaderContainer>
       <Navbar>
@@ -20,7 +28,7 @@ export default function Header() {
         </nav>
         <Signout>
           <strong>Admin FastFeet</strong>
-          <button type="button">sair do sistema</button>
+          <button type="button" onClick={handleSignOut}>sair do sistema</button>
         </Signout>
       </Navbar>
     </HeaderContainer>

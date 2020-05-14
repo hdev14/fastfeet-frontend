@@ -26,6 +26,10 @@ function* signIn({ payload }) {
   }
 }
 
+function signOut() {
+  history.push('/');
+}
+
 function setToken({ payload }) {
   const { token } = payload.auth;
   api.defaults.headers.Authorization = `Baerer ${token}`;
@@ -33,5 +37,6 @@ function setToken({ payload }) {
 
 export default all([
   takeLatest(authTypes.SIGN_IN_REQUEST, signIn),
+  takeLatest(authTypes.SIGN_OUT, signOut),
   takeLatest('persist/REHYDRATE', setToken),
 ]);
