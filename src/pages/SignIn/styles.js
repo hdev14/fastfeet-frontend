@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form, Input } from '@rocketseat/unform';
 import { darken } from 'polished';
 
 export const SignInContainer = styled.div`
@@ -14,10 +15,16 @@ export const SignInContainer = styled.div`
   padding: 60px 30px;
 `;
 
-export const SignInForm = styled.form`
+export const SignInForm = styled(Form)`
   display: flex;
   flex-direction: column;
   margin-top: 25px;
+
+  span {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: var(--red);
+  }
 `;
 
 export const SignInLabel = styled.label`
@@ -28,7 +35,7 @@ export const SignInLabel = styled.label`
   margin: 15px 0 10px;
 `;
 
-export const SignInInput = styled.input`
+export const SignInInput = styled(Input)`
   width: 300px;
   height: 45px;
   border-radius: 4px;
