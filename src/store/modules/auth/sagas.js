@@ -1,6 +1,7 @@
 import {
   all, takeLatest, call, put,
 } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 
 import api from '../../../services/api';
 import history from '../../../services/history';
@@ -21,7 +22,7 @@ function* signIn({ payload }) {
     yield put(signInSuccess(token));
     history.push('/order');
   } catch (error) {
-    console.tron.log('ERROR -> ', error);
+    toast.error('E-mail ou senha inválidos');
     return;
   }
 }
