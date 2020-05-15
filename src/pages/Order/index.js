@@ -4,6 +4,7 @@ import { FaCircle } from 'react-icons/fa';
 import { MdMoreHoriz, MdRemoveRedEye, MdCreate } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import api from '../../services/api';
 
@@ -41,10 +42,17 @@ export default function Order() {
     }
   }
 
-  function handleDelete() {
+  async function handleDelete(orderId) {
     const result = window.confirm('Tem certeza que deseja excluir esse encomenda?');
     if (result) {
-      return;
+      const response = await api.delete(`/orders/${orderId}`);
+      console.tron.log(response);
+
+      if (response.status === 200) {
+        const newOrders = orders.filter((order) => order.id !== orderId);
+        setOrders(newOrders);
+        toast.success('Encomenda excluída!');
+      }
     }
   }
 
@@ -80,7 +88,7 @@ export default function Order() {
         </thead>
 
         <tbody>
-          {orders.map((order, index)=> (
+          {orders.map((order, index) => (
             <tr key={order.id}>
               <td>{`#${index}`}</td>
               <td>{order.product}</td>
@@ -125,8 +133,8 @@ export default function Order() {
                     <li>
                       <div
                         role="button"
-                        onClick={handleDelete}
-                        onKeyPress={handleDelete}
+                        onClick={() => handleDelete(order.id)}
+                        onKeyPress={() => handleDelete(order.id)}
                         tabIndex={0}
                       >
                         <IoMdTrash size={16} color="#DE3B3B" />
