@@ -5,6 +5,7 @@ import { MdMoreHoriz, MdRemoveRedEye, MdCreate } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { format } from 'date-fns';
 
 import api from '../../services/api';
 
@@ -29,7 +30,18 @@ export default function Order() {
     async function fetchOrders() {
       const response = await api.get('/orders');
       console.tron.log(response);
-      setOrders([...response.data]);
+      const data = response.data.map((order) => {
+        if (order.start_date || order.end_date) {
+          return {
+            ...order,
+            start_date: format(new Date(order.start_date), 'dd/mm/yyyy'),
+            end_date: format(new Date(order.end_date), 'dd/mm/yyyy'),
+          };
+        }
+
+        return order;
+      });
+      setOrders(data);
     }
 
     fetchOrders();

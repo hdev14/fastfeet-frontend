@@ -18,6 +18,7 @@ export const Table = styled.table`
   width: 100%;
   border-collapse: seperate;
   border-spacing: 0 20px;
+  margin-bottom: 100px;
 
   th, td {
     text-align: left;

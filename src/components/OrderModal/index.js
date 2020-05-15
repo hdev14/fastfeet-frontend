@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -30,14 +30,14 @@ export default function OrderModal({ data }) {
         <div>
           <strong>Datas</strong>
           <ul>
-            <li><b>Retirada: </b> 25/01/2020</li>
-            <li><b>Entrega: </b> 25/01/2020</li>
+            <li><b>Retirada: </b> {data.start_date && data.start_date}</li>
+            <li><b>Entrega: </b> {data.end_date}</li>
           </ul>
         </div>
 
         <ModalFooter>
           <strong>Assinatura do destinatário</strong>
-          <img src={data.signature.url} alt="signature" />
+          <img src={data.signature && data.signature.url} alt="" />
         </ModalFooter>
       </Modal>
     </ContainerModal>
