@@ -28,7 +28,7 @@ export default function Order() {
   useEffect(() => {
     async function fetchOrders() {
       const response = await api.get('/orders');
-
+      console.tron.log(response);
       setOrders([...response.data]);
     }
 
@@ -108,7 +108,7 @@ export default function Order() {
               </td>
               <td>
                 <div id="modal">
-                  <OrderModal />
+                  <OrderModal data={order} />
                 </div>
                 <Actions>
                   <MdMoreHoriz size={24} color="#666" onClick={handleAction} />

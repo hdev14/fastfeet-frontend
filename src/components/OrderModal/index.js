@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   ContainerModal,
@@ -6,9 +7,7 @@ import {
   ModalFooter,
 } from './styles';
 
-import signature from '../../assets/signature.png';
-
-export default function OrderModal() {
+export default function OrderModal({ data }) {
   function handleClose(e) {
     const modal = e.target.children[0];
     if (modal && modal.id === 'modal') {
@@ -22,9 +21,9 @@ export default function OrderModal() {
         <div>
           <strong>Informações da encomenda</strong>
           <ul>
-            <li>Rua Beethoven, 1729</li>
-            <li>Diadema - SP</li>
-            <li>09960-580</li>
+            <li>{data.recipient.street}</li>
+            <li>{`${data.recipient.city} - ${data.recipient.state}`}</li>
+            <li>{data.recipient.cep}</li>
           </ul>
         </div>
 
@@ -38,9 +37,13 @@ export default function OrderModal() {
 
         <ModalFooter>
           <strong>Assinatura do destinatário</strong>
-          <img src={signature} alt="signature" />
+          <img src={data.signature.url} alt="signature" />
         </ModalFooter>
       </Modal>
     </ContainerModal>
   );
 }
+
+OrderModal.propTypes = {
+  data: PropTypes.object.isRequired,
+};
