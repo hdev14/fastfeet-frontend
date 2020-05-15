@@ -4,7 +4,9 @@ import { darken } from 'polished';
 
 export const Container = styled.div`
   width: 80%;
-  margin: 20px auto;
+  margin: 0px auto;
+  padding: 20px 0;
+
   h2 {
     font-size: 1.5rem;
     color: var(--dark-gray);
