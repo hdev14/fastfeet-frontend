@@ -4,6 +4,10 @@ export const HeaderContainer = styled.div`
   width: 100%;
   border: 1px solid var(--light-gray);
   background-color: white;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
 `;
 
 export const Navbar = styled.div`
