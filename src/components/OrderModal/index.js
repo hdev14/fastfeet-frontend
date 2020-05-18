@@ -30,14 +30,16 @@ export default function OrderModal({ data }) {
         <div>
           <strong>Datas</strong>
           <ul>
-            <li><b>Retirada: </b> {data.start_date && data.start_date}</li>
+            <li><b>Retirada: </b> {data.start_date}</li>
             <li><b>Entrega: </b> {data.end_date}</li>
           </ul>
         </div>
 
         <ModalFooter>
           <strong>Assinatura do destinatário</strong>
-          <img src={data.signature && data.signature.url} alt="" />
+          {data.signature && (
+            <img src={data.signature.url} alt="" />
+          )}
         </ModalFooter>
       </Modal>
     </ContainerModal>
