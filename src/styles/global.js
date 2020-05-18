@@ -27,6 +27,7 @@ export default createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     height: 100%;
     width: 100%;
+    background-color: #F5F5F5;
   }
 
   input, textarea, button {

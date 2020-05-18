@@ -1,6 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
+
+import api from '../../services/api';
 
 import {
   ContainerRegister,
@@ -11,6 +14,28 @@ import {
 import FormContainerOrder from './styles';
 
 export default function OrderEdit() {
+  const [order, setOrder] = useState({});
+  const [recipients, setRecipients] = useState([]);
+  const [deliverymans, setDeliverymans] = useState([]);
+
+  const match = useRouteMatch('/order/edit/:id');
+
+  useEffect(() => {
+    async function fetchData() {
+      const { id } = match.params;
+      const responseOrder = await api.get(`/orders/${id}`);
+      setOrder(responseOrder.data);
+
+      const responseRecipient = await api.get('/recipients');
+      setRecipients(responseRecipient.data);
+
+      const responseDeliveryman = await api.get('/deliveryman');
+      setDeliverymans(responseDeliveryman.data);
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <ContainerRegister>
       <div id="header">
@@ -39,10 +64,13 @@ export default function OrderEdit() {
                   id="select-recipient"
                   name="recipient"
                   placeholder="Escolha o destinatário"
+                  value={order.recipient_id}
                 >
-                  <option value="1">recipient 1</option>
-                  <option value="2">recipient 2</option>
-                  <option value="3">recipient 3</option>
+                  {recipients.map((recipient) => (
+                    <option key={recipient.id} value={recipient.id}>
+                      {recipient.name}
+                    </option>
+                  ))}
                 </select>
               </label>
 
@@ -52,10 +80,13 @@ export default function OrderEdit() {
                   id="select-deliveryman"
                   name="select-deliveryman"
                   placeholder="Escolha o entregador"
+                  value={order.deliveryman_id}
                 >
-                  <option value="1">deliveryman 1</option>
-                  <option value="2">deliveryman 2</option>
-                  <option value="3">deliveryman 3</option>
+                  {deliverymans.map((deliveryman) => (
+                    <option key={deliveryman.id} value={deliveryman.id}>
+                      {deliveryman.name}
+                    </option>
+                  ))}
                 </select>
               </label>
             </div>
@@ -77,3 +108,7 @@ export default function OrderEdit() {
     </ContainerRegister>
   );
 }
+
+OrderEdit.propTypes = {
+  match: PropTypes.object.isRequired,
+};

@@ -30,7 +30,6 @@ export default function Order() {
   useEffect(() => {
     async function fetchOrders() {
       const response = await api.get('/orders');
-      console.tron.log(response.data);
 
       const data = response.data.map((order) => {
         if (order.start_date || order.end_date) {
@@ -69,7 +68,6 @@ export default function Order() {
     const result = window.confirm('Tem certeza que deseja excluir esse encomenda?');
     if (result) {
       const response = await api.delete(`/orders/${orderId}`);
-      console.tron.log(response);
 
       if (response.status === 200) {
         const newOrders = orders.filter((order) => order.id !== orderId);
@@ -148,7 +146,7 @@ export default function Order() {
                       </div>
                     </li>
                     <li>
-                      <Link to="/order/edit/1">
+                      <Link to={`/order/edit/${order.id}`}>
                         <MdCreate size={16} color="#4D85EE" />
                         Editar
                       </Link>
