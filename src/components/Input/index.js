@@ -2,12 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useField } from '@rocketseat/unform';
 
-export default function Select({
-  name,
-  label,
-  children,
-  ...rest
-}) {
+export default function Input({ name, label, ...rest }) {
   const inputRef = useRef(null);
   const {
     fieldName,
@@ -27,25 +22,20 @@ export default function Select({
   return (
     <label htmlFor={fieldName}>
       {label}
-      <select
+      <input
+        type="text"
         id={fieldName}
         ref={inputRef}
         defaultValue={defaultValue}
         {...rest}
-      >
-        {children}
-      </select>
+      />
 
       {error && <span className="error">{error}</span>}
     </label>
   );
 }
 
-Select.propTypes = {
+Input.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
 };
