@@ -2,7 +2,12 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useField } from '@rocketseat/unform';
 
-export default function Input({ name, value, label, ...rest }) {
+export default function Input({
+  name,
+  value,
+  label,
+  ...rest
+}) {
   const inputRef = useRef(null);
   const {
     fieldName,

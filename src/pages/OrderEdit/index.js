@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
 import api from '../../services/api';
+
+import Select from '../../components/Select';
+import Input from '../../components/Input';
 
 import {
   ContainerRegister,
@@ -36,6 +38,10 @@ export default function OrderEdit() {
     fetchData();
   }, []);
 
+  async function handleSubmit(data) {
+    console.tron.log(data);
+  }
+
   return (
     <ContainerRegister>
       <div id="header">
@@ -47,7 +53,7 @@ export default function OrderEdit() {
               VOLTAR
             </Link>
           </DefaultButton>
-          <PrimaryButton type="button">
+          <PrimaryButton form="order-edit" type="submit">
             <MdDone size={20} color="#fff" />
             SALVAR
           </PrimaryButton>
@@ -55,51 +61,42 @@ export default function OrderEdit() {
       </div>
 
       <FormContainerOrder>
-        <UnForm>
+        <UnForm id="order-edit" onSubmit={handleSubmit}>
           <div id="order-form">
             <div id="recipient-deliveryman">
-              <label htmlFor="select-recipient">
-                Destinatário
-                <select
-                  id="select-recipient"
-                  name="recipient"
-                  placeholder="Escolha o destinatário"
-                  value={order.recipient_id}
-                >
-                  {recipients.map((recipient) => (
-                    <option key={recipient.id} value={recipient.id}>
-                      {recipient.name}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <Select
+                name="recipient"
+                label="Destinatário"
+              >
+                {recipients.map((recipient) => (
+                  <option
+                    selected={order.recipient_id === recipient.id}
+                    key={recipient.id}
+                    value={recipient.id}
+                  >
+                    {recipient.name}
+                  </option>
+                ))}
+              </Select>
 
-              <label htmlFor="select-deliveryman">
-                Entregador
-                <select
-                  id="select-deliveryman"
-                  name="select-deliveryman"
-                  placeholder="Escolha o entregador"
-                  value={order.deliveryman_id}
-                >
-                  {deliverymans.map((deliveryman) => (
-                    <option key={deliveryman.id} value={deliveryman.id}>
-                      {deliveryman.name}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <Select
+                name="deliveryman"
+                label="Entregador"
+              >
+                {deliverymans.map((deliveryman) => (
+                  <option
+                    selected={order.deliveryman_id === deliveryman.id}
+                    key={deliveryman.id}
+                    value={deliveryman.id}
+                  >
+                    {deliveryman.name}
+                  </option>
+                ))}
+              </Select>
             </div>
 
             <div id="input-product">
-              <label htmlFor="product">
-                Nome do produto
-                <input
-                  id="product"
-                  name="product"
-                  type="text"
-                />
-              </label>
+              <Input name="product" value={order.product} label="Nome do produto" />
             </div>
           </div>
         </UnForm>
@@ -108,7 +105,3 @@ export default function OrderEdit() {
     </ContainerRegister>
   );
 }
-
-OrderEdit.propTypes = {
-  match: PropTypes.object.isRequired,
-};
