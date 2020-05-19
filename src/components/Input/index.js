@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useField } from '@rocketseat/unform';
 
-export default function Input({ name, label, ...rest }) {
+export default function Input({ name, value, label, ...rest }) {
   const inputRef = useRef(null);
   const {
     fieldName,
@@ -27,6 +27,7 @@ export default function Input({ name, label, ...rest }) {
         id={fieldName}
         ref={inputRef}
         defaultValue={defaultValue}
+        value={value}
         {...rest}
       />
 
@@ -35,7 +36,12 @@ export default function Input({ name, label, ...rest }) {
   );
 }
 
+Input.defautlProps = {
+  value: '',
+};
+
 Input.propTypes = {
   name: PropTypes.string.isRequired,
+  value: PropTypes.string,
   label: PropTypes.string.isRequired,
 };
