@@ -61,6 +61,11 @@ export default function Order() {
     if (key === 'Enter') {
       const response = await api.get('/orders', { params: { q: element.value } });
       if (response.status === 200) {
+        if (response.data.length === 0) {
+          toast.warn('Não há nenhuma encomenda com esse produto');
+          return;
+        }
+
         setOrders(response.data);
       }
     }
@@ -77,7 +82,7 @@ export default function Order() {
     const result = window.confirm('Tem certeza que deseja excluir esse encomenda?');
     if (result) {
       const response = await api.delete(`/orders/${orderId}`);
-      console.tron.log(response.data);
+
       if (response.status === 200) {
         const newOrders = orders.filter((order) => order.id !== orderId);
         setOrders(newOrders);
@@ -94,7 +99,7 @@ export default function Order() {
         <div>
           <input
             type="text"
-            placeholder="Buscar por enconmendas"
+            placeholder="Pesquisar pelo produto"
             onKeyPress={onKeyPressSearch}
           />
           <GoSearch size={20} />
@@ -126,11 +131,11 @@ export default function Order() {
           {orders.map((order, index) => (
             <tr key={order.id}>
               <td>{`#${index}`}</td>
-              <td>{order.product}</td>
+              <td>{order.recipient.name}</td>
               <td>
                 <DeliverymanInfo>
                   <Picture src="https://api.adorable.io/avatars/50/abott@adorable.png" alt="" />
-                  <span>{order.recipient.name}</span>
+                  <span>{order.deliveryman.name}</span>
                 </DeliverymanInfo>
               </td>
               <td>{order.recipient.city}</td>
