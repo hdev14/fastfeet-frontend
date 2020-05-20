@@ -26,7 +26,6 @@ import handleAction from '../../functions/handleAction';
 
 export default function Order() {
   const [orders, setOrders] = useState([]);
-
   useEffect(() => {
     async function fetchOrders() {
       const response = await api.get('/orders');
@@ -57,6 +56,16 @@ export default function Order() {
     fetchOrders();
   }, []);
 
+  async function onKeyPressSearch(e) {
+    const { target: element, key } = e;
+    if (key === 'Enter') {
+      const response = await api.get('/orders', { params: { q: element.value } });
+      if (response.status === 200) {
+        setOrders(response.data);
+      }
+    }
+  }
+
   function handleModal(modalId) {
     const modal = document.getElementById(modalId).firstChild;
     if (modal) {
@@ -68,7 +77,7 @@ export default function Order() {
     const result = window.confirm('Tem certeza que deseja excluir esse encomenda?');
     if (result) {
       const response = await api.delete(`/orders/${orderId}`);
-
+      console.tron.log(response.data);
       if (response.status === 200) {
         const newOrders = orders.filter((order) => order.id !== orderId);
         setOrders(newOrders);
@@ -83,8 +92,13 @@ export default function Order() {
 
       <Operations>
         <div>
-          <input type="text" placeholder="Buscar por enconmendas" />
+          <input
+            type="text"
+            placeholder="Buscar por enconmendas"
+            onKeyPress={onKeyPressSearch}
+          />
           <GoSearch size={20} />
+          <small>Após digitar precione a tecla Enter.</small>
         </div>
 
         <PrimaryButton type="button">

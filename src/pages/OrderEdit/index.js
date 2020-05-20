@@ -47,8 +47,6 @@ export default function OrderEdit() {
       product: product || order.product,
     });
 
-    console.tron.log(response);
-
     if (response.status === 200) {
       toast.info('Encomenda atualizada.');
       history.push('/order');
