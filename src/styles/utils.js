@@ -231,6 +231,14 @@ export const Operations = styled.div`
       fill: var(--gray);
       transform: translateY(-50%);
     }
+
+    small {
+      position: absolute;
+      bottom: -20px;
+      left: 5px;
+      font-size: 0.6rem;
+      color: var(--medium-gray);
+    }
   }
 `;
 
