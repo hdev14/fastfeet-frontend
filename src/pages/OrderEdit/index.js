@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 import api from '../../services/api';
+import history from '../../services/history';
 
 import Select from '../../components/Select';
 import Input from '../../components/Input';
@@ -38,8 +40,19 @@ export default function OrderEdit() {
     fetchData();
   }, []);
 
-  async function handleSubmit(data) {
-    console.tron.log(data);
+  async function handleSubmitEditOrder({ recipient, deliveryman, product }) {
+    const response = await api.put(`/orders/${order.id}`, {
+      recipient_id: recipient,
+      deliveryman_id: deliveryman,
+      product: product || order.product,
+    });
+
+    console.tron.log(response);
+
+    if (response.status === 200) {
+      toast.info('Encomenda atualizada.');
+      history.push('/order');
+    }
   }
 
   return (
@@ -61,7 +74,7 @@ export default function OrderEdit() {
       </div>
 
       <FormContainerOrder>
-        <UnForm id="order-edit" onSubmit={handleSubmit}>
+        <UnForm id="order-edit" onSubmit={handleSubmitEditOrder}>
           <div id="order-form">
             <div id="recipient-deliveryman">
               <Select

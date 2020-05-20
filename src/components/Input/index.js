@@ -32,7 +32,7 @@ export default function Input({
         id={fieldName}
         ref={inputRef}
         defaultValue={defaultValue}
-        value={value}
+        placeholder={value}
         {...rest}
       />
 
