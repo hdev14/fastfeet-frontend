@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
+import { toast } from 'react-toastify';
+import * as Yup from 'yup';
+
+import api from '../../services/api';
+import history from '../../services/history';
+
+import Select from '../../components/Select';
+import Input from '../../components/Input';
 
 import {
   ContainerRegister,
@@ -10,7 +18,41 @@ import {
 } from '../../styles/utils';
 import FormContainerOrder from './styles';
 
+const schema = Yup.object().shape({
+  recipient: Yup.number().required(),
+  deliveryman: Yup.number().required(),
+  product: Yup.string().required('O nome do produto é necessário'),
+});
+
 export default function OrderRegister() {
+  const [recipients, setRecipients] = useState([]);
+  const [deliverymans, setDeliverymans] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const responseRecipients = await api.get('/recipients');
+      setRecipients(responseRecipients.data);
+
+      const responseDeliverymans = await api.get('/deliveryman');
+      setDeliverymans(responseDeliverymans.data);
+    }
+
+    fetchData();
+  }, []);
+
+  async function handleOnSubmit({ recipient, deliveryman, product }) {
+    const response = await api.post('/orders', {
+      recipient_id: recipient,
+      deliveryman_id: deliveryman,
+      product,
+    });
+
+    if (response.status === 200) {
+      toast.success('Encomenda registrada com sucesso.');
+      history.push('/order');
+    }
+  }
+
   return (
     <ContainerRegister>
       <div id="header">
@@ -22,7 +64,7 @@ export default function OrderRegister() {
               VOLTAR
             </Link>
           </DefaultButton>
-          <PrimaryButton type="button">
+          <PrimaryButton form="order-register" type="submit">
             <MdDone size={20} color="#fff" />
             SALVAR
           </PrimaryButton>
@@ -30,45 +72,32 @@ export default function OrderRegister() {
       </div>
 
       <FormContainerOrder>
-        <UnForm>
+        <UnForm
+          id="order-register"
+          onSubmit={handleOnSubmit}
+          schema={schema}
+        >
           <div id="order-form">
             <div id="recipient-deliveryman">
-              <label htmlFor="select-recipient">
-                Destinatário
-                <select
-                  id="select-recipient"
-                  name="recipient"
-                  placeholder="Escolha o destinatário"
-                >
-                  <option value="1">recipient 1</option>
-                  <option value="2">recipient 2</option>
-                  <option value="3">recipient 3</option>
-                </select>
-              </label>
+              <Select name="recipient" label="Destinatário">
+                {recipients.map((recipient) => (
+                  <option key={recipient.id} value={recipient.id}>
+                    {recipient.name}
+                  </option>
+                ))}
+              </Select>
 
-              <label htmlFor="select-deliveryman">
-                Entregador
-                <select
-                  id="select-deliveryman"
-                  name="select-deliveryman"
-                  placeholder="Escolha o entregador"
-                >
-                  <option value="1">deliveryman 1</option>
-                  <option value="2">deliveryman 2</option>
-                  <option value="3">deliveryman 3</option>
-                </select>
-              </label>
+              <Select name="deliveryman" label="Entregador">
+                {deliverymans.map((deliveryman) => (
+                  <option key={deliveryman.id} value={deliveryman.id}>
+                    {deliveryman.name}
+                  </option>
+                ))}
+              </Select>
             </div>
 
             <div id="input-product">
-              <label htmlFor="product">
-                Nome do produto
-                <input
-                  id="product"
-                  name="product"
-                  type="text"
-                />
-              </label>
+              <Input name="product" label="Produto" />
             </div>
           </div>
         </UnForm>

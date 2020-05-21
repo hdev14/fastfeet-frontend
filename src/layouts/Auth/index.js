@@ -5,8 +5,7 @@ import styled from 'styled-components';
 import Header from '../../components/Header';
 
 const AuthConaiter = styled.div`
-  height: 100vh;
-  background-color: #F5F5F5;
+  height: 100%;
 `;
 
 export default function AuthLayout({ children }) {

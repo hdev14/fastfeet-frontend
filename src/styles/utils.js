@@ -4,7 +4,9 @@ import { darken } from 'polished';
 
 export const Container = styled.div`
   width: 80%;
-  margin: 20px auto;
+  margin: 0px auto;
+  padding: 20px 0;
+
   h2 {
     font-size: 1.5rem;
     color: var(--dark-gray);
@@ -16,6 +18,7 @@ export const Table = styled.table`
   width: 100%;
   border-collapse: seperate;
   border-spacing: 0 20px;
+  margin-bottom: 100px;
 
   th, td {
     text-align: left;
@@ -228,6 +231,14 @@ export const Operations = styled.div`
       fill: var(--gray);
       transform: translateY(-50%);
     }
+
+    small {
+      position: absolute;
+      bottom: -20px;
+      left: 5px;
+      font-size: 0.6rem;
+      color: var(--medium-gray);
+    }
   }
 `;
 
@@ -284,6 +295,12 @@ export const UnForm = styled(Form)`
     border-radius: 4px;
     width: 100%;
     background-color: white;
+  }
+
+  span {
+    font-size: 0.7rem;
+    font-weight: normal;
+    color: var(--red);
   }
 
   div#recipient-form {

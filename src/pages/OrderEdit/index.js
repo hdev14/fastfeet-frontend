@@ -1,6 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
+import { toast } from 'react-toastify';
+
+import api from '../../services/api';
+import history from '../../services/history';
+
+import Select from '../../components/Select';
+import Input from '../../components/Input';
 
 import {
   ContainerRegister,
@@ -11,6 +18,41 @@ import {
 import FormContainerOrder from './styles';
 
 export default function OrderEdit() {
+  const [order, setOrder] = useState({});
+  const [recipients, setRecipients] = useState([]);
+  const [deliverymans, setDeliverymans] = useState([]);
+
+  const match = useRouteMatch('/order/edit/:id');
+
+  useEffect(() => {
+    async function fetchData() {
+      const { id } = match.params;
+      const responseOrder = await api.get(`/orders/${id}`);
+      setOrder(responseOrder.data);
+
+      const responseRecipient = await api.get('/recipients');
+      setRecipients(responseRecipient.data);
+
+      const responseDeliveryman = await api.get('/deliveryman');
+      setDeliverymans(responseDeliveryman.data);
+    }
+
+    fetchData();
+  }, []);
+
+  async function handleSubmitEditOrder({ recipient, deliveryman, product }) {
+    const response = await api.put(`/orders/${order.id}`, {
+      recipient_id: recipient,
+      deliveryman_id: deliveryman,
+      product: product || order.product,
+    });
+
+    if (response.status === 200) {
+      toast.info('Encomenda atualizada.');
+      history.push('/order');
+    }
+  }
+
   return (
     <ContainerRegister>
       <div id="header">
@@ -22,7 +64,7 @@ export default function OrderEdit() {
               VOLTAR
             </Link>
           </DefaultButton>
-          <PrimaryButton type="button">
+          <PrimaryButton form="order-edit" type="submit">
             <MdDone size={20} color="#fff" />
             SALVAR
           </PrimaryButton>
@@ -30,45 +72,42 @@ export default function OrderEdit() {
       </div>
 
       <FormContainerOrder>
-        <UnForm>
+        <UnForm id="order-edit" onSubmit={handleSubmitEditOrder}>
           <div id="order-form">
             <div id="recipient-deliveryman">
-              <label htmlFor="select-recipient">
-                Destinatário
-                <select
-                  id="select-recipient"
-                  name="recipient"
-                  placeholder="Escolha o destinatário"
-                >
-                  <option value="1">recipient 1</option>
-                  <option value="2">recipient 2</option>
-                  <option value="3">recipient 3</option>
-                </select>
-              </label>
+              <Select
+                name="recipient"
+                label="Destinatário"
+              >
+                {recipients.map((recipient) => (
+                  <option
+                    selected={order.recipient_id === recipient.id}
+                    key={recipient.id}
+                    value={recipient.id}
+                  >
+                    {recipient.name}
+                  </option>
+                ))}
+              </Select>
 
-              <label htmlFor="select-deliveryman">
-                Entregador
-                <select
-                  id="select-deliveryman"
-                  name="select-deliveryman"
-                  placeholder="Escolha o entregador"
-                >
-                  <option value="1">deliveryman 1</option>
-                  <option value="2">deliveryman 2</option>
-                  <option value="3">deliveryman 3</option>
-                </select>
-              </label>
+              <Select
+                name="deliveryman"
+                label="Entregador"
+              >
+                {deliverymans.map((deliveryman) => (
+                  <option
+                    selected={order.deliveryman_id === deliveryman.id}
+                    key={deliveryman.id}
+                    value={deliveryman.id}
+                  >
+                    {deliveryman.name}
+                  </option>
+                ))}
+              </Select>
             </div>
 
             <div id="input-product">
-              <label htmlFor="product">
-                Nome do produto
-                <input
-                  id="product"
-                  name="product"
-                  type="text"
-                />
-              </label>
+              <Input name="product" value={order.product} label="Nome do produto" />
             </div>
           </div>
         </UnForm>
