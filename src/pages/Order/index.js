@@ -56,7 +56,7 @@ export default function Order() {
     fetchOrders();
   }, []);
 
-  async function onKeyPressSearch(e) {
+  async function handleOnKeyPressSearch(e) {
     const { target: element, key } = e;
     if (key === 'Enter') {
       const response = await api.get('/orders', { params: { q: element.value } });
@@ -100,7 +100,7 @@ export default function Order() {
           <input
             type="text"
             placeholder="Pesquisar pelo produto"
-            onKeyPress={onKeyPressSearch}
+            onKeyPress={handleOnKeyPressSearch}
           />
           <GoSearch size={20} />
           <small>Após digitar precione a tecla Enter.</small>

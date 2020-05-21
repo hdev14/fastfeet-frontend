@@ -297,6 +297,12 @@ export const UnForm = styled(Form)`
     background-color: white;
   }
 
+  span {
+    font-size: 0.7rem;
+    font-weight: normal;
+    color: var(--red);
+  }
+
   div#recipient-form {
     padding: 30px 0 60px;
     display: grid;
