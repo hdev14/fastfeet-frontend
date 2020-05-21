@@ -62,7 +62,7 @@ export default function Order() {
       const response = await api.get('/orders', { params: { q: element.value } });
       if (response.status === 200) {
         if (response.data.length === 0) {
-          toast.warn('Não há nenhuma encomenda com esse produto');
+          toast.warn('Não há nenhuma encomenda com essa produto');
           return;
         }
 
