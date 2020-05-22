@@ -1,14 +1,30 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
 
+import api from '../../services/api';
+
 import AvatarInput from '../../components/AvatarInput';
+import Input from '../../components/Input';
 
 import {
   ContainerRegister, PrimaryButton, DefaultButton, UnForm,
 } from '../../styles/utils';
 
 export default function DeliverymanEdit() {
+  const [deliveryman, setDeliveryman] = useState({});
+  const match = useRouteMatch('/deliveryman/edit/:id');
+
+  useEffect(() => {
+    async function fetchDeliveryman() {
+      const { id } = match.params;
+      const response = await api.get(`/deliveryman/${id}`);
+      setDeliveryman(response.data);
+    }
+
+    fetchDeliveryman();
+  }, []);
+
   return (
     <ContainerRegister>
       <div id="header">
@@ -29,26 +45,18 @@ export default function DeliverymanEdit() {
       <UnForm>
         <AvatarInput name="avatar" />
 
-        <label htmlFor="name">
-          Nome
-          <input
-            id="name"
-            name="name"
-            type="text"
-            placeholder="Digite o nome do entregador"
-          />
-        </label>
+        <Input
+          name="name"
+          label="Nome"
+          value={deliveryman.name}
+        />
 
-
-        <label htmlFor="email">
-          Email
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="Digite o email do entregador"
-          />
-        </label>
+        <Input
+          name="email"
+          label="E-mail"
+          type="email"
+          value={deliveryman.email}
+        />
 
       </UnForm>
     </ContainerRegister>
