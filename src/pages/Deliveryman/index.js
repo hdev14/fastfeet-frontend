@@ -1,8 +1,9 @@
-import React , { useState, useEffect }from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { GoSearch, GoPlus } from 'react-icons/go';
 import { MdCreate, MdMoreHoriz } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
+import { toast } from 'react-toastify';
 
 import api from '../../services/api';
 
@@ -30,10 +31,16 @@ export default function Deliveryman() {
     fetchDeliverymans();
   }, []);
 
-  function handleDelete() {
+  async function handleDelete(deliverymanId) {
     const result = window.confirm('Tem certeza que deseja excluir esse entregador?');
     if (result) {
-      return;
+      const response = await api.delete(`/deliveryman/${deliverymanId}`);
+
+      if (response.status === 200) {
+        const newData = deliverymans.filter((d) => d.id !== deliverymanId);
+        setDeliverymans(newData);
+        toast.success('Entregador excluído');
+      }
     }
   }
 
@@ -95,8 +102,8 @@ export default function Deliveryman() {
                     <li>
                       <div
                         role="button"
-                        onClick={handleDelete}
-                        onKeyPress={handleDelete}
+                        onClick={() => handleDelete(deliveryman.id)}
+                        onKeyPress={() => handleDelete(deliveryman.id)}
                         tabIndex={0}
                       >
                         <IoMdTrash size={16} color="#DE3B3B" />
