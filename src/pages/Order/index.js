@@ -29,7 +29,7 @@ export default function Order() {
   useEffect(() => {
     async function fetchOrders() {
       const response = await api.get('/orders');
-
+      console.tron.log(response.data);
       const data = response.data.map((order) => {
         if (order.start_date || order.end_date) {
           return {
@@ -134,7 +134,10 @@ export default function Order() {
               <td>{order.recipient.name}</td>
               <td>
                 <DeliverymanInfo>
-                  <Picture src="https://api.adorable.io/avatars/50/abott@adorable.png" alt="" />
+                  <Picture
+                    src={order.deliveryman.avatar && order.deliveryman.avatar.url}
+                    alt={order.deliveryman.avatar ? order.deliveryman.avatar.name : ''}
+                  />
                   <span>{order.deliveryman.name}</span>
                 </DeliverymanInfo>
               </td>

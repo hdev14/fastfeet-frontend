@@ -1,9 +1,10 @@
-import React from 'react';
+import React , { useState, useEffect }from 'react';
 import { Link } from 'react-router-dom';
 import { GoSearch, GoPlus } from 'react-icons/go';
 import { MdCreate, MdMoreHoriz } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
 
+import api from '../../services/api';
 
 import {
   Container,
@@ -17,6 +18,18 @@ import {
 import handleAction from '../../functions/handleAction';
 
 export default function Deliveryman() {
+  const [deliverymans, setDeliverymans] = useState([]);
+
+  useEffect(() => {
+    async function fetchDeliverymans() {
+      const response = await api.get('/deliveryman');
+      console.tron.log(response.data);
+      setDeliverymans(response.data);
+    }
+
+    fetchDeliverymans();
+  }, []);
+
   function handleDelete() {
     const result = window.confirm('Tem certeza que deseja excluir esse entregador?');
     if (result) {
@@ -53,42 +66,48 @@ export default function Deliveryman() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>#01</td>
-            <td>
-              <Picture src="https://api.adorable.io/avatars/50/abott@adorable.png" alt="" />
-            </td>
-            <td>
-              John Doe
-            </td>
-            <td>
-              johndoe@email.com
-            </td>
-            <td>
-              <Actions>
-                <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
-                <ul style={{ display: 'none' }}>
-                  <li>
-                    <Link to="/deliveryman/edit/1">
-                      <MdCreate size={16} color="#4D85EE" />
-                      Editar
-                    </Link>
-                  </li>
-                  <li>
-                    <div
-                      role="button"
-                      onClick={handleDelete}
-                      onKeyPress={handleDelete}
-                      tabIndex={0}
-                    >
-                      <IoMdTrash size={16} color="#DE3B3B" />
-                      Excluir
-                    </div>
-                  </li>
-                </ul>
-              </Actions>
-            </td>
-          </tr>
+          {deliverymans.map((deliveryman, index) => (
+            <tr key={deliveryman.id}>
+              <td>{`#${index}`}</td>
+              <td>
+                <Picture src={deliveryman.avatar && deliveryman.avatar.url} alt="" />
+              </td>
+              <td>
+                {deliveryman.name}
+              </td>
+              <td>
+                {deliveryman.email}
+              </td>
+              <td>
+                <Actions>
+                  <MdMoreHoriz
+                    size={24}
+                    color="#666"
+                    onClick={handleAction}
+                  />
+                  <ul style={{ display: 'none' }}>
+                    <li>
+                      <Link to={`/deliveryman/edit/${deliveryman.id}`}>
+                        <MdCreate size={16} color="#4D85EE" />
+                        Editar
+                      </Link>
+                    </li>
+                    <li>
+                      <div
+                        role="button"
+                        onClick={handleDelete}
+                        onKeyPress={handleDelete}
+                        tabIndex={0}
+                      >
+                        <IoMdTrash size={16} color="#DE3B3B" />
+                        Excluir
+                      </div>
+                    </li>
+                  </ul>
+                </Actions>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </Container>
