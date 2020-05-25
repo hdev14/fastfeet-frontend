@@ -2,11 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MdImage } from 'react-icons/md';
 import { useField } from '@rocketseat/unform';
 
+import api from '../../services/api';
+
 import AvatarContainer from './styles';
 
 export default function AvatarInput() {
   const ref = useRef();
-  const {fieldName, defaultValue, registerField, error} = useField('avatar');
+  const { fieldName, registerField } = useField('avatar');
   const [file, setFile] = useState('');
   const [preview, setPreview] = useState('');
 
@@ -20,14 +22,22 @@ export default function AvatarInput() {
     }
   }, [ref, registerField]);
 
-  function handleOnChange(e) {
-    // TODO
+  async function handleOnChange(e) {
+    const formData = new FormData();
+    formData.append('file', e.target.files[0]);
+
+    const response = await api.post('/files', formData);
+    if (response.status === 200) {
+      const { id, url } = response.data;
+      setFile(id);
+      setPreview(url);
+    }
   }
 
   return (
     <AvatarContainer>
       <label forHtml={fieldName}>
-        <img src="" alt="" />
+        <img src={preview || ''} alt="" />
         <MdImage color="#DDDDDD" size={40} />
         <strong>Adicionar foto</strong>
         <input
@@ -36,6 +46,7 @@ export default function AvatarInput() {
           accept="images/*"
           data-file={file}
           ref={ref}
+          onChange={handleOnChange}
         />
       </label>
     </AvatarContainer>
