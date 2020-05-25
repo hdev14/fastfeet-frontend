@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MdImage } from 'react-icons/md';
 import { useField } from '@rocketseat/unform';
+import PropTypes from 'prop-types';
 
 import api from '../../services/api';
 
 import AvatarContainer from './styles';
 
-export default function AvatarInput() {
+export default function AvatarInput({ defaultPreview }) {
   const ref = useRef();
   const { fieldName, registerField } = useField('avatar');
   const [file, setFile] = useState('');
@@ -37,7 +38,7 @@ export default function AvatarInput() {
   return (
     <AvatarContainer>
       <label forHtml={fieldName}>
-        <img src={preview || ''} alt="" />
+        <img src={preview || defaultPreview} alt="" />
         <MdImage color="#DDDDDD" size={40} />
         <strong>Adicionar foto</strong>
         <input
@@ -52,3 +53,8 @@ export default function AvatarInput() {
     </AvatarContainer>
   );
 }
+
+AvatarInput.propTypes = {
+  defaultPreview: PropTypes.string.isRequired,
+};
+

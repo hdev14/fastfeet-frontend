@@ -11,7 +11,6 @@ export default function Input({
   const inputRef = useRef(null);
   const {
     fieldName,
-    defaultValue,
     registerField,
     error,
   } = useField(name);
@@ -31,7 +30,7 @@ export default function Input({
         type="text"
         id={fieldName}
         ref={inputRef}
-        defaultValue={defaultValue}
+        defaultValue={value}
         placeholder={value}
         {...rest}
       />
@@ -41,7 +40,7 @@ export default function Input({
   );
 }
 
-Input.defautlProps = {
+Input.defaultProps = {
   value: '',
 };
 
