@@ -7,10 +7,10 @@ import api from '../../services/api';
 
 import AvatarContainer from './styles';
 
-export default function AvatarInput({ defaultPreview }) {
+export default function AvatarInput({ defaultFile, defaultPreview }) {
   const ref = useRef();
-  const { fieldName, registerField } = useField('avatar');
-  const [file, setFile] = useState('');
+  const { registerField } = useField('avatar');
+  const [file, setFile] = useState(defaultFile);
   const [preview, setPreview] = useState('');
 
   useEffect(() => {
@@ -37,12 +37,12 @@ export default function AvatarInput({ defaultPreview }) {
 
   return (
     <AvatarContainer>
-      <label forHtml={fieldName}>
+      <label forHtml="avatar">
         <img src={preview || defaultPreview} alt="" />
         <MdImage color="#DDDDDD" size={40} />
         <strong>Adicionar foto</strong>
         <input
-          id={fieldName}
+          id="avatar"
           type="file"
           accept="images/*"
           data-file={file}
@@ -55,6 +55,6 @@ export default function AvatarInput({ defaultPreview }) {
 }
 
 AvatarInput.propTypes = {
+  defaultFile: PropTypes.number.isRequired,
   defaultPreview: PropTypes.string.isRequired,
 };
-

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { MdKeyboardArrowLeft, MdDone } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 import api from '../../services/api';
+import history from '../../services/history';
 
 import AvatarInput from '../../components/AvatarInput';
 import Input from '../../components/Input';
@@ -25,6 +27,15 @@ export default function DeliverymanEdit() {
     fetchDeliveryman();
   }, []);
 
+  async function handleOnSubmit(data) {
+    const response = await api.put(`/deliveryman/${deliveryman.id}`, data);
+
+    if (response.status === 200) {
+      toast.info('Entregador editado');
+      history.push('/deliveryman');
+    }
+  }
+
   return (
     <ContainerRegister>
       <div id="header">
@@ -36,14 +47,20 @@ export default function DeliverymanEdit() {
               VOLTAR
             </Link>
           </DefaultButton>
-          <PrimaryButton type="button">
+          <PrimaryButton form="deliveryman-edit" type="submit">
             <MdDone size={20} color="#fff" />
             SALVAR
           </PrimaryButton>
         </div>
       </div>
-      <UnForm>
-        <AvatarInput name="avatar" />
+      <UnForm
+        id="deliveryman-edit"
+        onSubmit={handleOnSubmit}
+      >
+        <AvatarInput
+          defaultFile={deliveryman.avatar_id}
+          defaultPreview={deliveryman.avatar && deliveryman.avatar.url}
+        />
 
         <Input
           name="name"
