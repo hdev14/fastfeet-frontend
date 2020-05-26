@@ -25,6 +25,7 @@ const AvatarContainer = styled.div`
       border: none;
       position: absolute;
       width: 130px;
+      height: 130px;
     }
 
     svg { transition: color .2s easy-out; }

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { GoSearch, GoPlus } from 'react-icons/go';
 import { MdCreate, MdMoreHoriz } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
+import { toast } from 'react-toastify';
 
+import api from '../../services/api';
 
 import {
   Container,
@@ -17,10 +19,45 @@ import {
 import handleAction from '../../functions/handleAction';
 
 export default function Deliveryman() {
-  function handleDelete() {
+  const [deliverymans, setDeliverymans] = useState([]);
+
+  useEffect(() => {
+    async function fetchDeliverymans() {
+      const response = await api.get('/deliveryman');
+      setDeliverymans(response.data);
+    }
+
+    fetchDeliverymans();
+  }, []);
+
+  async function handleOnKeyPressSearch(e) {
+    const { target: element, key } = e;
+    if (key === 'Enter') {
+      const response = await api.get('/deliveryman', {
+        params: { q: element.value },
+      });
+
+      if (response.status === 200) {
+        if (response.data.length === 0) {
+          toast.warn('Não há nenhum entregador com esse nome');
+          return;
+        }
+
+        setDeliverymans(response.data);
+      }
+    }
+  }
+
+  async function handleDelete(deliverymanId) {
     const result = window.confirm('Tem certeza que deseja excluir esse entregador?');
     if (result) {
-      return;
+      const response = await api.delete(`/deliveryman/${deliverymanId}`);
+
+      if (response.status === 200) {
+        const newData = deliverymans.filter((d) => d.id !== deliverymanId);
+        setDeliverymans(newData);
+        toast.success('Entregador excluído');
+      }
     }
   }
 
@@ -30,8 +67,13 @@ export default function Deliveryman() {
 
       <Operations>
         <div>
-          <input type="text" placeholder="Buscar por entregadores" />
+          <input
+            type="text"
+            placeholder="Buscar por entregadores"
+            onKeyPress={handleOnKeyPressSearch}
+          />
           <GoSearch size={20} />
+          <small>Após digitar precione a tecla Enter.</small>
         </div>
 
         <PrimaryButton>
@@ -53,42 +95,48 @@ export default function Deliveryman() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>#01</td>
-            <td>
-              <Picture src="https://api.adorable.io/avatars/50/abott@adorable.png" alt="" />
-            </td>
-            <td>
-              John Doe
-            </td>
-            <td>
-              johndoe@email.com
-            </td>
-            <td>
-              <Actions>
-                <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
-                <ul style={{ display: 'none' }}>
-                  <li>
-                    <Link to="/deliveryman/edit/1">
-                      <MdCreate size={16} color="#4D85EE" />
-                      Editar
-                    </Link>
-                  </li>
-                  <li>
-                    <div
-                      role="button"
-                      onClick={handleDelete}
-                      onKeyPress={handleDelete}
-                      tabIndex={0}
-                    >
-                      <IoMdTrash size={16} color="#DE3B3B" />
-                      Excluir
-                    </div>
-                  </li>
-                </ul>
-              </Actions>
-            </td>
-          </tr>
+          {deliverymans.map((deliveryman, index) => (
+            <tr key={deliveryman.id}>
+              <td>{`#${index}`}</td>
+              <td>
+                <Picture src={deliveryman.avatar && deliveryman.avatar.url} alt="" />
+              </td>
+              <td>
+                {deliveryman.name}
+              </td>
+              <td>
+                {deliveryman.email}
+              </td>
+              <td>
+                <Actions>
+                  <MdMoreHoriz
+                    size={24}
+                    color="#666"
+                    onClick={handleAction}
+                  />
+                  <ul style={{ display: 'none' }}>
+                    <li>
+                      <Link to={`/deliveryman/edit/${deliveryman.id}`}>
+                        <MdCreate size={16} color="#4D85EE" />
+                        Editar
+                      </Link>
+                    </li>
+                    <li>
+                      <div
+                        role="button"
+                        onClick={() => handleDelete(deliveryman.id)}
+                        onKeyPress={() => handleDelete(deliveryman.id)}
+                        tabIndex={0}
+                      >
+                        <IoMdTrash size={16} color="#DE3B3B" />
+                        Excluir
+                      </div>
+                    </li>
+                  </ul>
+                </Actions>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </Container>

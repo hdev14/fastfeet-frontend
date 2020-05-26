@@ -30,7 +30,6 @@ export default function Order() {
   useEffect(() => {
     async function fetchOrders() {
       const response = await api.get('/orders');
-
       const data = response.data.map((order) => {
         if (order.start_date) {
           order.start_date = format(
@@ -65,6 +64,7 @@ export default function Order() {
     const { target: element, key } = e;
     if (key === 'Enter') {
       const response = await api.get('/orders', { params: { q: element.value } });
+
       if (response.status === 200) {
         if (response.data.length === 0) {
           toast.warn('Não há nenhuma encomenda com essa produto');
@@ -139,7 +139,10 @@ export default function Order() {
               <td>{order.recipient.name}</td>
               <td>
                 <DeliverymanInfo>
-                  <Picture src="https://api.adorable.io/avatars/50/abott@adorable.png" alt="" />
+                  <Picture
+                    src={order.deliveryman.avatar && order.deliveryman.avatar.url}
+                    alt={order.deliveryman.avatar ? order.deliveryman.avatar.name : ''}
+                  />
                   <span>{order.deliveryman.name}</span>
                 </DeliverymanInfo>
               </td>
