@@ -9,6 +9,7 @@ import { format } from 'date-fns';
 import pt_br from 'date-fns/locale/pt-BR';
 
 import api from '../../services/api';
+import { getStatus } from '../../utils';
 
 import OrderModal from '../../components/OrderModal';
 
@@ -31,24 +32,28 @@ export default function Order() {
       const response = await api.get('/orders');
 
       const data = response.data.map((order) => {
-        if (order.start_date || order.end_date) {
-          return {
-            ...order,
-            start_date: format(
-              new Date(order.start_date),
-              'dd/MM/yyyy',
-              { locale: pt_br },
-            ),
-            end_date: format(
-              new Date(order.end_date),
-              'dd/MM/yyyy',
-              { locale: pt_br },
-            ),
-          };
+        if (order.start_date) {
+          order.start_date = format(
+            new Date(order.start_date),
+            'dd/MM/yyyy',
+            { locale: pt_br },
+          );
         }
+
+        if (order.end_date) {
+          order.end_date = format(
+            new Date(order.end_date),
+            'dd/MM/yyyy',
+            { locale: pt_br },
+          );
+        }
+
+        order.status = getStatus(order);
 
         return order;
       });
+
+      console.tron.log(data);
 
       setOrders(data);
     }
@@ -141,9 +146,9 @@ export default function Order() {
               <td>{order.recipient.city}</td>
               <td>{order.recipient.state}</td>
               <td>
-                <Status className="green">
+                <Status className={order.status.color}>
                   <FaCircle />
-                  entregue
+                  {order.status.title}
                 </Status>
               </td>
               <td>
