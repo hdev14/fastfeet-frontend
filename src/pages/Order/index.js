@@ -29,7 +29,6 @@ export default function Order() {
   useEffect(() => {
     async function fetchOrders() {
       const response = await api.get('/orders');
-      console.tron.log(response.data);
       const data = response.data.map((order) => {
         if (order.start_date || order.end_date) {
           return {
@@ -60,6 +59,7 @@ export default function Order() {
     const { target: element, key } = e;
     if (key === 'Enter') {
       const response = await api.get('/orders', { params: { q: element.value } });
+
       if (response.status === 200) {
         if (response.data.length === 0) {
           toast.warn('Não há nenhuma encomenda com essa produto');

@@ -24,12 +24,29 @@ export default function Deliveryman() {
   useEffect(() => {
     async function fetchDeliverymans() {
       const response = await api.get('/deliveryman');
-      console.tron.log(response.data);
       setDeliverymans(response.data);
     }
 
     fetchDeliverymans();
   }, []);
+
+  async function handleOnKeyPressSearch(e) {
+    const { target: element, key } = e;
+    if (key === 'Enter') {
+      const response = await api.get('/deliveryman', {
+        params: { q: element.value },
+      });
+
+      if (response.status === 200) {
+        if (response.data.length === 0) {
+          toast.warn('Não há nenhum entregador com esse nome');
+          return;
+        }
+
+        setDeliverymans(response.data);
+      }
+    }
+  }
 
   async function handleDelete(deliverymanId) {
     const result = window.confirm('Tem certeza que deseja excluir esse entregador?');
@@ -50,8 +67,13 @@ export default function Deliveryman() {
 
       <Operations>
         <div>
-          <input type="text" placeholder="Buscar por entregadores" />
+          <input
+            type="text"
+            placeholder="Buscar por entregadores"
+            onKeyPress={handleOnKeyPressSearch}
+          />
           <GoSearch size={20} />
+          <small>Após digitar precione a tecla Enter.</small>
         </div>
 
         <PrimaryButton>
