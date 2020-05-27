@@ -63,7 +63,7 @@ export default function Problem() {
 
   return (
     <Container>
-      <h2>Problemas na entrega</h2>
+      <h2>Problemas nas entregas</h2>
 
       <Table>
         <thead>
