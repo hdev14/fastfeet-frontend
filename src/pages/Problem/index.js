@@ -1,6 +1,7 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { MdCreate, MdMoreHoriz } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
+import { toast } from 'react-toastify';
 
 import api from '../../services/api';
 
@@ -27,8 +28,11 @@ export default function Problem() {
 
   useEffect(() => {
     async function fetchProblems() {
-      const response = await api.get('/problems');
-      const data = response.data.filter((p) => p.orders !== null);
+      const response = await api.get('/delivery/problem');
+      const data = response.data.filter((p) => {
+        return p.orders && !p.orders.canceled_at;
+      });
+
       setProblems(data);
     }
 
@@ -41,10 +45,19 @@ export default function Problem() {
     }
   }
 
-  function handleCancel() {
+  async function handleCancel(problemId) {
     const result = window.confirm('Tem certeza que deseja cancelar a encomenda?');
     if (result) {
-      return;
+      const response = await api.delete(
+        `/delivery/problem/${problemId}/cancel-delivery`,
+      );
+
+      if (response.status === 200) {
+        const newData = problems.filter(p => p.id !== problemId);
+        setProblems(newData);
+
+        toast.success('Problema excluído com sucesso');
+      }
     }
   }
 
@@ -88,8 +101,8 @@ export default function Problem() {
                     <li>
                       <div
                         role="button"
-                        onClick={handleCancel}
-                        onKeyPress={handleCancel}
+                        onClick={() => handleCancel(problem.id)}
+                        onKeyPress={() => handleCancel(problem.id)}
                         tabIndex={0}
                       >
                         <IoMdTrash size={16} color="#DE3B3B" />
