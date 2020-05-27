@@ -29,7 +29,7 @@ export default function Routes() {
       <Route path="/recipient/register" exact auth component={RecipientRegister} />
       <Route path="/recipient/edit/:id" auth component={RecipientEdit} />
       <Route path="/recipient" auth component={Recipient} />
-      <Route path="/throuble" auth component={Problem} />
+      <Route path="/problem" auth component={Problem} />
     </Switch>
   );
 }

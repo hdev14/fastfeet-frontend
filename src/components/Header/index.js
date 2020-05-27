@@ -24,7 +24,7 @@ export default function Header() {
           <Link to="/order">encomendas</Link>
           <Link to="/deliveryman">entregadores</Link>
           <Link to="/recipient">destinatários</Link>
-          <Link to="/throuble">problemas</Link>
+          <Link to="/problem">problemas</Link>
         </nav>
         <Signout>
           <strong>Admin FastFeet</strong>
