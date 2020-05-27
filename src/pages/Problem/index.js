@@ -53,7 +53,7 @@ export default function Problem() {
       );
 
       if (response.status === 200) {
-        const newData = problems.filter(p => p.id !== problemId);
+        const newData = problems.filter((p) => p.id !== problemId);
         setProblems(newData);
 
         toast.success('Problema excluído com sucesso');
@@ -82,7 +82,7 @@ export default function Problem() {
               </td>
               <td>
                 <div id="modal">
-                  <ProblemModal />
+                  <ProblemModal content={problem.description} />
                 </div>
                 <Actions className="problem">
                   <MdMoreHoriz size={24} color="#666" onClick={handleAction} />

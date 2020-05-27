@@ -28,7 +28,7 @@ export const Modal = styled.div`
     text-transform: uppercase;
   }
 
-  p#throuble-modal-content {
+  p#problem-modal-content {
     margin-top: 10px;
     overflow: normal;
     white-space: normal;

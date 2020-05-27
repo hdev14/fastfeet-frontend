@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   ProblemModalContainer,
   Modal,
 } from './styles';
 
-export default function ProblemModal() {
+export default function ProblemModal({ content }) {
   function handleClose(e) {
     const modal = e.target.firstChild;
     if (modal && modal.id === 'modal') {
@@ -17,10 +18,14 @@ export default function ProblemModal() {
     <ProblemModalContainer onClick={handleClose}>
       <Modal id="modal">
         <strong>visualizar problema</strong>
-        <p id="throuble-modal-content">
-          Mussum Ipsum, cacilds vidis litro abertis. Interagi no mé, cursus quis, vehicula ac nisi. Paisis, filhis, espiritis santis. Cevadis im ampola pa arma uma pindureta. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis!
+        <p id="problem-modal-content">
+          {content}
         </p>
       </Modal>
     </ProblemModalContainer>
   );
 }
+
+ProblemModal.propTypes = {
+  content: PropTypes.string.isRequired,
+};
