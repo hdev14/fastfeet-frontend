@@ -8,7 +8,7 @@ import SignIn from '../pages/SignIn';
 import Deliveryman from '../pages/Deliveryman';
 import Order from '../pages/Order';
 import Recipient from '../pages/Recipient';
-import Throuble from '../pages/Throuble';
+import Problem from '../pages/Problem';
 import DeliverymanRegister from '../pages/DeliverymanRegister';
 import RecipientRegister from '../pages/RecipientRegister';
 import OrderRegister from '../pages/OrderRegister';
@@ -29,7 +29,7 @@ export default function Routes() {
       <Route path="/recipient/register" exact auth component={RecipientRegister} />
       <Route path="/recipient/edit/:id" auth component={RecipientEdit} />
       <Route path="/recipient" auth component={Recipient} />
-      <Route path="/throuble" auth component={Throuble} />
+      <Route path="/throuble" auth component={Problem} />
     </Switch>
   );
 }

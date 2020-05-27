@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ThroubleModalContainer = styled.div`
+export const ProblemModalContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
   display: none;
   height: 100vh;

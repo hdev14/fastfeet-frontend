@@ -2,7 +2,7 @@ import React from 'react';
 import { MdCreate, MdMoreHoriz } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
 
-import ThroubleModal from '../../components/ThroubleModal';
+import ProblemModal from '../../components/ProblemModal';
 
 import {
   Container,
@@ -20,7 +20,7 @@ const style = {
   },
 };
 
-export default function Throuble() {
+export default function Problem() {
   function handleModal(modalId) {
     const modal = document.getElementById(modalId).firstChild;
     if (modal) {
@@ -57,9 +57,9 @@ export default function Throuble() {
             </td>
             <td>
               <div id="modal">
-                <ThroubleModal />
+                <ProblemModal />
               </div>
-              <Actions className="throuble">
+              <Actions className="problem">
                 <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
                 <ul style={style.ul}>
                   <li>
