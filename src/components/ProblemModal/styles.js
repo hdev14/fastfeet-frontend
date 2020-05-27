@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ThroubleModalContainer = styled.div`
+export const ProblemModalContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
   display: none;
   height: 100vh;
@@ -28,7 +28,7 @@ export const Modal = styled.div`
     text-transform: uppercase;
   }
 
-  p#throuble-modal-content {
+  p#problem-modal-content {
     margin-top: 10px;
     overflow: normal;
     white-space: normal;

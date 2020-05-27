@@ -148,7 +148,7 @@ export const Actions = styled.div`
     cursor: pointer;
   }
 
-  &.throuble ul {
+  &.problem ul {
     width: 200px;
     left: calc(100% - 47%);
   }
