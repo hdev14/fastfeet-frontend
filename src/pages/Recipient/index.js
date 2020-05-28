@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GoSearch, GoPlus } from 'react-icons/go';
 import { MdCreate, MdMoreHoriz } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
 
+import api from '../../services/api';
 
 import {
   Container,
@@ -16,6 +17,17 @@ import {
 import handleAction from '../../functions/handleAction';
 
 export default function Recipient() {
+  const [recipients, setRecipients] = useState([]);
+
+  useEffect(() => {
+    async function fetchRecipients() {
+      const response = await api.get('/recipients');
+      setRecipients(response.data);
+    }
+
+    fetchRecipients();
+  }, []);
+
   function handleDelete() {
     const result = window.confirm('Tem certeza que deseja excluir este destinatário?');
     if (result) {
@@ -51,35 +63,39 @@ export default function Recipient() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>#01</td>
-            <td>Ludwig van Beethoven</td>
-            <td>Rua Beethoven, 1729, Diadema - São Paulo</td>
-            <td>
-              <Actions>
-                <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
-                <ul style={{ display: 'none' }}>
-                  <li>
-                    <Link to="/deliveryman/edit/1" >
-                      <MdCreate size={16} color="#4D85EE" />
-                      Editar
-                    </Link>
-                  </li>
-                  <li>
-                    <div
-                      role="button"
-                      onClick={handleDelete}
-                      onKeyPress={handleDelete}
-                      tabIndex={0}
-                    >
-                      <IoMdTrash size={16} color="#DE3B3B" />
-                      Excluir
-                    </div>
-                  </li>
-                </ul>
-              </Actions>
-            </td>
-          </tr>
+          {recipients.map((recipient, index) => (
+            <tr key={recipient.id}>
+              <td>{`#${index}`}</td>
+              <td>{recipient.name}</td>
+              <td>
+                {recipient.street}, {recipient.number}, {recipient.city} - {recipient.state}
+              </td>
+              <td>
+                <Actions>
+                  <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
+                  <ul style={{ display: 'none' }}>
+                    <li>
+                      <Link to="/deliveryman/edit/1">
+                        <MdCreate size={16} color="#4D85EE" />
+                        Editar
+                      </Link>
+                    </li>
+                    <li>
+                      <div
+                        role="button"
+                        onClick={handleDelete}
+                        onKeyPress={handleDelete}
+                        tabIndex={0}
+                      >
+                        <IoMdTrash size={16} color="#DE3B3B" />
+                        Excluir
+                      </div>
+                    </li>
+                  </ul>
+                </Actions>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </Container>

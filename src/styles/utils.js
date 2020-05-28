@@ -267,8 +267,8 @@ export const ContainerRegister = styled(Container)`
 `;
 
 export const Picture = styled.img`
-  height: 35px;
-  width: 35px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   margin-right: 10px;
 `;

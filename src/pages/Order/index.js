@@ -140,6 +140,7 @@ export default function Order() {
               <td>
                 <DeliverymanInfo>
                   <Picture
+                    style={{ width: '55px' }}
                     src={order.deliveryman.avatar && order.deliveryman.avatar.url}
                     alt={order.deliveryman.avatar ? order.deliveryman.avatar.name : ''}
                   />
