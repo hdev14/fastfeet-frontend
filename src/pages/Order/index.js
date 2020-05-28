@@ -30,8 +30,6 @@ export default function Order() {
       const response = await api.get('/orders');
       const data = formatOrders(response.data);
 
-      console.tron.log(data);
-
       setOrders(data);
     }
 
@@ -130,7 +128,7 @@ export default function Order() {
               <td>
                 {order.status && (
                   <Status className={order.status.color}>
-                  <FaCircle />
+                    <FaCircle size={8} />
                     {order.status.title}
                   </Status>
                 )}

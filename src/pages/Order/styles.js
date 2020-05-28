@@ -14,7 +14,7 @@ export const Status = styled.div`
   border-radius: 15px;
 
   svg {
-    margin-right: 5px;
+    margin-right: 2.5px;
   }
 
   &.green {
@@ -29,9 +29,9 @@ export const Status = styled.div`
   &.red {
     background-color: #FAB0B0;
     color: #DE3B3B;
-
     svg {
       fill: #DE3B3B;
+
     }
   }
 
