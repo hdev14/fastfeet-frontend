@@ -29,6 +29,25 @@ export default function Recipient() {
     fetchRecipients();
   }, []);
 
+  async function handleOnKeyPressSearch(e) {
+    const { target: element, key } = e;
+
+    if (key === 'Enter') {
+      const response = await api.get('/recipients', {
+        params: { q: element.value },
+      });
+
+      if (response.status === 200) {
+        if (response.data.length === 0) {
+          toast.warn('Não há nenhum destinatário com esse nome');
+          return;
+        }
+
+        setRecipients(response.data);
+      }
+    }
+  }
+
   async function handleDelete(recipientId) {
     const result = window.confirm('Tem certeza que deseja excluir este destinatário?');
     if (result) {
@@ -47,8 +66,13 @@ export default function Recipient() {
 
       <Operations>
         <div>
-          <input type="text" placeholder="Buscar por distinatários" />
+          <input
+            type="text"
+            placeholder="Buscar por distinatários"
+            onKeyPress={handleOnKeyPressSearch}
+          />
           <GoSearch size={20} />
+          <small>Após digitar precione a tecla Enter.</small>
         </div>
 
         <PrimaryButton type="button">
