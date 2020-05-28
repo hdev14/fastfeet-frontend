@@ -105,7 +105,7 @@ export default function Recipient() {
                   <MdMoreHoriz size={24} color="#666" onClick={handleAction} />
                   <ul style={{ display: 'none' }}>
                     <li>
-                      <Link to="/deliveryman/edit/1">
+                      <Link to={`/recipient/edit/${recipient.id}`}>
                         <MdCreate size={16} color="#4D85EE" />
                         Editar
                       </Link>
