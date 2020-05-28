@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { GoSearch, GoPlus } from 'react-icons/go';
 import { MdCreate, MdMoreHoriz } from 'react-icons/md';
 import { IoMdTrash } from 'react-icons/io';
+import { toast } from 'react-toastify';
 
 import api from '../../services/api';
 
@@ -28,10 +29,15 @@ export default function Recipient() {
     fetchRecipients();
   }, []);
 
-  function handleDelete() {
+  async function handleDelete(recipientId) {
     const result = window.confirm('Tem certeza que deseja excluir este destinatário?');
     if (result) {
-      return;
+      const response = await api.delete(`/recipients/${recipientId}`);
+      if (response.status === 200) {
+        const newData = recipients.filter((r) => r.id !== recipientId);
+        setRecipients(newData);
+        toast.success('Destinatário exluído com sucesso');
+      }
     }
   }
 
@@ -83,8 +89,8 @@ export default function Recipient() {
                     <li>
                       <div
                         role="button"
-                        onClick={handleDelete}
-                        onKeyPress={handleDelete}
+                        onClick={() => handleDelete(recipient.id)}
+                        onKeyPress={() => handleDelete(recipient.id)}
                         tabIndex={0}
                       >
                         <IoMdTrash size={16} color="#DE3B3B" />
