@@ -317,7 +317,7 @@ export const UnForm = styled(Form)`
       }
 
       input {
-        margin: 10px 0 0 0;
+        margin: 5px 0 0 0;
       }
 
       &#input-name { grid-area: name; }
