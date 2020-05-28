@@ -27,7 +27,6 @@ export default function Input({
     <label htmlFor={fieldName}>
       {label}
       <input
-        type="text"
         id={fieldName}
         ref={inputRef}
         defaultValue={value}
