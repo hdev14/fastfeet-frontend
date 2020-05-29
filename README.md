@@ -2,9 +2,9 @@
 <a href="https://github.com/Rocketseat/bootcamp-gostack-desafio-09">Desafio 9: FastFeet, front-end web</a>
 </h3>
 
-<div align="center">
-![screen](/docs/fastfeet.gif)
-</div>
+
+![screen](docs/fastfeet.gif)
+
 
 ## Sobre
 O projeto foi desenvolvido com base nos requisitos do desafio 9 da Rocketseat. Este projeto foi feito com o simples próposito de aprimorar meus conhecimentos tanto na tecnologia do Facebook ReactJS quanto em outras do universo Javascript.
