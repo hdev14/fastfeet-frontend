@@ -13,6 +13,6 @@ O projeto foi desenvolvido com base nos requisitos do desafio 9 da Rocketseat. E
 - [ReactJS](https://reactjs.org/): base do projeto;
 - [Styled-Components](https://styled-components.com/): para estilizações das telas;
 - [Redux](https://react-redux.js.org/7.1/introduction/quick-start) e [Redux-Saga](https://redux-saga.js.org/): persistência dos dados;
-- [Yup](https://github.com/jquense/yup): validação do campos;
+- [Yup](https://github.com/jquense/yup): validação dos campos;
 - [UnForm](https://unform.dev/): para construção de formulários.
 - E outras...
