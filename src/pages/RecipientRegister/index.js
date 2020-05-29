@@ -26,7 +26,7 @@ const schema = Yup.object().shape({
   cep: Yup.string()
     .matches(cepRegex, 'CEP inválido')
     .required('CEP é obrigatório'),
-  complement: Yup.string(),
+  complement: Yup.string().required('Complemento é obrigatório'),
   number: Yup.number()
     .moreThan(0, 'Não pode ser zero')
     .required('Número é obrigatório'),
