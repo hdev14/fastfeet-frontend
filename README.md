@@ -3,7 +3,7 @@
 </h3>
 
 <div align="center">
-![gif](docs/fastfeet.gif)
+![screen](docs/fastfeet.gif)
 </div>
 
 ## Sobre
