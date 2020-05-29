@@ -115,11 +115,13 @@ export default function Order() {
               <td>{order.recipient.name}</td>
               <td>
                 <DeliverymanInfo>
-                  <Picture
-                    style={{ width: '55px' }}
-                    src={order.deliveryman.avatar && order.deliveryman.avatar.url}
-                    alt={order.deliveryman.avatar ? order.deliveryman.avatar.name : ''}
-                  />
+                  {order.deliveryman && (
+                    <Picture
+                      style={{ width: '55px' }}
+                      src={order.deliveryman.avatar && order.deliveryman.avatar.url}
+                      alt={order.deliveryman.avatar ? order.deliveryman.avatar.name : ''}
+                    />
+                  )}
                   <span>{order.deliveryman.name}</span>
                 </DeliverymanInfo>
               </td>
